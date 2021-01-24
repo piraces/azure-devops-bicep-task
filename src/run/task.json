@@ -1,0 +1,37 @@
+{
+    "id": "c2bead41-f781-4e76-9ca8-8b7141452f73",
+    "name": "run",
+    "friendlyName": "Run Bicep CLI build command",
+    "description": "Run Bicep CLI build command",
+    "helpMarkDown": "Runs the Bicep CLI build command",
+    "author": "Raúl Piracés",
+    "preview": false,
+    "showEnvironmentVariables": false,
+    "runsOn": [
+      "Agent",
+      "MachineGroup",
+      "Server"
+    ],
+    "category": "Azure Pipelines",
+    "version": {
+      "Major": 1,
+      "Minor": 0,
+      "Patch": 0
+    },
+    "instanceNameFormat": "Run Bicep CLI build command",
+    "inputs": [
+      {
+        "type": "filePath",
+        "name": "sourceDirectory",
+        "label": "Source Directory for .bicep file(s)",
+        "defaultValue": "$(System.DefaultWorkingDirectory)",
+        "required": true,
+        "helpMarkDown": "The source directory for .bicep file(s) to compile"
+      }
+    ],
+    "execution": {
+      "Node": {
+        "target": "index.js"
+      }
+    }
+  }

@@ -1,0 +1,35 @@
+{
+  "name": "azure-devops-bicep-task",
+  "version": "1.0.0",
+  "description": "Tasks for installing Bicep CLI and running Bicep CLI build commands",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piraces/azure-devops-bicep-task.git"
+  },
+  "keywords": [
+    "task",
+    "azuredevops",
+    "pipelines"
+  ],
+  "author": "Raúl Piracés",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/piraces/azure-devops-bicep-task/issues"
+  },
+  "homepage": "https://github.com/piraces/azure-devops-bicep-task#readme",
+  "dependencies": {
+    "@types/glob": "^7.1.3",
+    "axios": "^0.21.1",
+    "azure-pipelines-task-lib": "^3.0.6-preview.1",
+    "azure-pipelines-tool-lib": "^1.0.0-preview.0",
+    "glob": "^7.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.22",
+    "@types/q": "^1.5.4"
+  }
+}

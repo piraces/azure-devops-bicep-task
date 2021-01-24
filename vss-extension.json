@@ -1,0 +1,99 @@
+{
+    "manifestVersion": 1,
+    "id": "azuredevops-bicep-tasks",
+    "version": "1.0.0",
+    "name": "Bicep Tasks",
+    "publisher": "piraces",
+    "description": "Provides Azure DevOps tasks to install and run Microsoft Bicep CLI commands",
+    "targets": [
+      {
+        "id": "Microsoft.VisualStudio.Services"
+      }
+    ],
+    "categories": [
+      "Azure Pipelines"
+    ],
+    "tags": [
+      "bicep",
+      "ARM",
+      "azure",
+      "deploy"
+    ],
+    "galleryFlags": [
+      "Free",
+      "Public"
+    ],
+    "icons": {
+      "default": "icon.png"
+    },
+    "content": {
+      "details": {
+        "path": "README.md"
+      },
+      "license": {
+        "path": "LICENSE"
+      }
+    },
+    "files": [
+      {
+        "path": "images",
+        "addressable": true
+      },
+      {
+        "path": "src/install",
+        "packagePath": "install"
+      },
+      {
+        "path": "src/run",
+        "packagePath": "run"
+      },
+      {
+        "path": "src/node_modules",
+        "packagePath": "install/node_modules"
+      },
+      {
+        "path": "src/node_modules",
+        "packagePath": "run/node_modules"
+      }
+    ],
+    "links": {
+      "overview": {
+        "uri": "https://github.com/piraces/azure-devops-bicep-task/blob/master/README.md"
+      },
+      "license": {
+        "uri": "https://github.com/piraces/azure-devops-bicep-task/blob/master/LICENSE"
+      },
+      "repository": {
+        "uri": "https://github.com/piraces/azure-devops-bicep-task"
+      },
+      "issues": {
+        "uri": "https://github.com/piraces/azure-devops-bicep-task/issues"
+      }
+    },
+    "repository": {
+      "type": "git",
+      "uri": "https://github.com/piraces/azure-devops-bicep-task"
+    },
+    "contributions": [
+      {
+        "id": "install-task",
+        "type": "ms.vss-distributed-task.task",
+        "targets": [
+          "ms.vss-distributed-task.tasks"
+        ],
+        "properties": {
+          "name": "install"
+        }
+      },
+      {
+        "id": "run-task",
+        "type": "ms.vss-distributed-task.task",
+        "targets": [
+          "ms.vss-distributed-task.tasks"
+        ],
+        "properties": {
+          "name": "run"
+        }
+      }
+    ]
+  }

@@ -1,0 +1,37 @@
+{
+    "id": "9925744d-eff5-498f-9a28-b54172e445be",
+    "name": "install",
+    "friendlyName": "Install Bicep CLI",
+    "description": "Install Bicep CLI",
+    "helpMarkDown": "Installs the Bicep CLI",
+    "author": "Raúl Piracés",
+    "preview": false,
+    "showEnvironmentVariables": false,
+    "runsOn": [
+      "Agent",
+      "MachineGroup",
+      "Server"
+    ],
+    "category": "Azure Pipelines",
+    "version": {
+      "Major": 1,
+      "Minor": 0,
+      "Patch": 0
+    },
+    "instanceNameFormat": "Install Bicep CLI",
+    "inputs": [
+      {
+        "type": "string",
+        "name": "version",
+        "label": "Version",
+        "defaultValue": "",
+        "required": false,
+        "helpMarkDown": "The version of Bicep CLI. If not set, the latest version of Bicep CLI is installed. Visit the [Bicep repo](https://github.com/Azure/bicep/releases) to get a version."
+      }
+    ],
+    "execution": {
+      "Node": {
+        "target": "index.js"
+      }
+    }
+  }
