@@ -1,4 +1,5 @@
 # Azure DevOps Bicep Tasks
+![Node.js CI](https://github.com/piraces/azure-devops-bicep-task/workflows/Node.js%20CI/badge.svg)
 
 ![Bicep Logo](./images/bicep_logo.png)
 
