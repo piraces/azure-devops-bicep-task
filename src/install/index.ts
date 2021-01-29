@@ -56,7 +56,7 @@ async function run() {
             taskLib.debug('Bicep not found cached in agent...');
             const downloadUrl = getDownloadUrl(version);
             taskLib.debug(`Downloading binary from ${downloadUrl}`);
-            const downloadPath = await toolLib.downloadTool(downloadUrl);
+            const downloadPath = await toolLib.downloadTool(downloadUrl, 'bicep');
             taskLib.debug(`Successfully downloaded binary to ${downloadPath}`);
             toolPath = await toolLib.cacheDir(path.dirname(downloadPath), 'bicep', version);
             taskLib.debug(`Bicep version ${version} cached`);
