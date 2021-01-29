@@ -1,6 +1,6 @@
 {
     "id": "9925744d-eff5-498f-9a28-b54172e445be",
-    "name": "install",
+    "name": "BicepInstall",
     "friendlyName": "Install Bicep CLI",
     "description": "Install Bicep CLI",
     "helpMarkDown": "Installs the Bicep CLI",

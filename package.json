@@ -4,7 +4,19 @@
   "description": "Tasks for installing Bicep CLI and running Bicep CLI build commands",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --passWithNoTests",
+    "coverage": "jest --collectCoverage",
+    "lint": "eslint **/*.ts --fix"
+  },
+  "husky": {
+    "hooks": {
+        "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+      "*.{js,ts,tsx}": [
+          "eslint **/*.ts --fix"
+      ]
   },
   "repository": {
     "type": "git",
@@ -29,7 +41,19 @@
     "glob": "^7.1.6"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",
-    "@types/q": "^1.5.4"
+    "@types/q": "^1.5.4",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "husky": "^4.3.8",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.1.3"
   }
 }

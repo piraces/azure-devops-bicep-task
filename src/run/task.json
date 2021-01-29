@@ -1,6 +1,6 @@
 {
     "id": "c2bead41-f781-4e76-9ca8-8b7141452f73",
-    "name": "run",
+    "name": "BicepBuild",
     "friendlyName": "Run Bicep CLI build command",
     "description": "Run Bicep CLI build command",
     "helpMarkDown": "Runs the Bicep CLI build command",

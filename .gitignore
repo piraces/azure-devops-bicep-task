@@ -1,6 +1,8 @@
 .vs
 *.js
+!jest.config.js
 node_modules
 .taskkey
 bicep
 bicep_files/*.json
+coverage

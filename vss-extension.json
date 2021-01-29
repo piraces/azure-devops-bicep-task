@@ -48,11 +48,11 @@
         "packagePath": "run"
       },
       {
-        "path": "src/node_modules",
+        "path": "node_modules",
         "packagePath": "install/node_modules"
       },
       {
-        "path": "src/node_modules",
+        "path": "node_modules",
         "packagePath": "run/node_modules"
       }
     ],
