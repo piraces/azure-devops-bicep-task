@@ -8,3 +8,4 @@ node_modules
 bicep
 bicep_files/*.json
 coverage
+*.vsix
