@@ -1,5 +1,6 @@
 # Azure DevOps Bicep Tasks
 ![Node.js CI](https://github.com/piraces/azure-devops-bicep-task/workflows/Node.js%20CI/badge.svg)
+[![Build Status](https://raulejea.visualstudio.com/Bicep%20Tasks/_apis/build/status/Test%20Bicep%20Tasks%20with%20latest%20version?branchName=main)](https://raulejea.visualstudio.com/Bicep%20Tasks/_build/latest?definitionId=19&branchName=main)
 
 ![Bicep Logo](https://raw.githubusercontent.com/piraces/azure-devops-bicep-task/main/images/bicep_logo.png)
 
