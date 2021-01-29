@@ -6,6 +6,8 @@
 
 This is a simple yet useful Azure DevOps set of tasks that allow to install and run [Microsoft Bicep CLI](https://github.com/Azure/bicep) commands in Azure Pipelines.
 
+[View in Marketplace](https://marketplace.visualstudio.com/items?itemName=piraces.azuredevops-bicep-tasks)
+
 # Install Bicep CLI task
 
 This task downloads and installs in the agent any version of the Bicep CLI available (adding it to the PATH environment variable). After running the task, the `Run Bicep CLI build command task` can be used. Alternatively, `bicep` command could be used in a script directly.
