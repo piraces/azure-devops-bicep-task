@@ -1,7 +1,7 @@
 # Azure DevOps Bicep Tasks
 ![Node.js CI](https://github.com/piraces/azure-devops-bicep-task/workflows/Node.js%20CI/badge.svg)
 
-![Bicep Logo](./images/bicep_logo.png)
+![Bicep Logo](https://raw.githubusercontent.com/piraces/azure-devops-bicep-task/main/images/bicep_logo.png)
 
 This is a simple yet useful Azure DevOps set of tasks that allow to install and run [Microsoft Bicep CLI](https://github.com/Azure/bicep) commands in Azure Pipelines.
 
