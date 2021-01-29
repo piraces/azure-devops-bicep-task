@@ -8,6 +8,8 @@ steps:
 - task: BicepInstall@1
   displayName: 'Install Bicep CLI'
 
+- script: 'ls -la /opt/hostedtoolcache/bicep/0.2.328/x64'
+
 - task: BicepBuild@1
   displayName: 'Compile Sample .bicep files'
   inputs:
