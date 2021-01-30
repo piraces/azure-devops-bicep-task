@@ -1,9 +1,15 @@
 import * as path from 'path';
-import { platform, arch } from 'os';
+import * as fs from 'fs';
+import { platform, arch, tmpdir } from 'os';
 import * as taskLib from 'azure-pipelines-task-lib/task';
 import * as toolLib from 'azure-pipelines-tool-lib/tool';
+import { glob } from 'glob';
 
 const axios = require('axios');
+
+export function getTempDirectory(): string {
+    return taskLib.getVariable('agent.tempDirectory') || tmpdir();
+}
 
 export function getDownloadUrl(version: string): string {
     const agentPlatform = platform();
@@ -60,8 +66,17 @@ async function run() {
             taskLib.debug(`Successfully downloaded binary to ${downloadPath}`);
             toolPath = await toolLib.cacheDir(path.dirname(downloadPath), 'bicep', version);
             taskLib.debug(`Bicep version ${version} cached`);
+            toolLib.prependPath(downloadPath);
+        } else {
+            const tempDir = getTempDirectory();
+            const files = glob.sync(toolPath + '/*');
+            if (files && files.length > 0) {
+                fs.renameSync(files[0], 'bicep');
+                taskLib.mv(`${toolPath}/bicep`, tempDir);
+            }
+            toolLib.prependPath(tempDir);
         }
-        toolLib.prependPath(toolPath);
+
         taskLib.debug('Added tool to PATH');
     } catch (err) {
         taskLib.setResult(taskLib.TaskResult.Failed, err.message);
