@@ -6,9 +6,9 @@ pool:
 
 steps:
 - task: BicepInstall@1
-  displayName: 'Install Bicep CLI'
+  displayName: 'Install Bicep CLI test'
 
 - task: BicepBuild@1
-  displayName: 'Compile Sample .bicep files'
+  displayName: 'Compile Sample .bicep files test'
   inputs:
     sourceDirectory: 'bicep_files/**.bicep'
