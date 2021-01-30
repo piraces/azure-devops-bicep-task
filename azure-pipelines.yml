@@ -2,7 +2,7 @@ trigger:
 - main
 
 stages:
-- stage: Test in Linux
+- stage: Linux
   pool:
     vmImage: 'ubuntu-latest'
   jobs:
@@ -19,7 +19,7 @@ stages:
     - script: 'ls -la bicep_files'
       displayName: 'List source and generated files'
 
-- stage: Test in Windows
+- stage: Windows
   pool:
     vmImage: 'windows-latest'
   jobs:
@@ -36,7 +36,7 @@ stages:
     - script: 'Get-ChildItem -Path bicep_files'
       displayName: 'List source and generated files'
 
-- stage: Test in macOS
+- stage: macOS
   pool:
     vmImage: 'macOS-latest'
   jobs:
