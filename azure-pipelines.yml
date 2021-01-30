@@ -33,7 +33,7 @@ stages:
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
 
-    - script: 'Get-ChildItem -Path bicep_files'
+    - script: 'dir bicep_files'
       displayName: 'List source and generated files'
 
 - stage: macOS
