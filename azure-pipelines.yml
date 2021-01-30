@@ -1,14 +1,54 @@
 trigger:
 - main
 
-pool:
-  vmImage: 'ubuntu-latest'
+stages:
+- stage: Test in Linux
+  pool:
+    vmImage: 'ubuntu-latest'
+  jobs:
+  - job: TestJobLinux
+    steps:
+    - task: BicepInstall@1
+      displayName: 'Install Bicep CLI test'
 
-steps:
-- task: BicepInstall@1
-  displayName: 'Install Bicep CLI test'
+    - task: BicepBuild@1
+      displayName: 'Compile Sample .bicep files test'
+      inputs:
+        sourceDirectory: 'bicep_files/**.bicep'
 
-- task: BicepBuild@1
-  displayName: 'Compile Sample .bicep files test'
-  inputs:
-    sourceDirectory: 'bicep_files/**.bicep'
+    - script: 'ls -la bicep_files'
+      displayName: 'List source and generated files'
+
+- stage: Test in Windows
+  pool:
+    vmImage: 'windows-latest'
+  jobs:
+  - job: TestJobWindows
+    steps:
+    - task: BicepInstall@1
+      displayName: 'Install Bicep CLI test'
+
+    - task: BicepBuild@1
+      displayName: 'Compile Sample .bicep files test'
+      inputs:
+        sourceDirectory: 'bicep_files/**.bicep'
+
+    - script: 'Get-ChildItem -Path bicep_files'
+      displayName: 'List source and generated files'
+
+- stage: Test in macOS
+  pool:
+    vmImage: 'macOS-latest'
+  jobs:
+  - job: TestJobWindows
+    steps:
+    - task: BicepInstall@1
+      displayName: 'Install Bicep CLI test'
+
+    - task: BicepBuild@1
+      displayName: 'Compile Sample .bicep files test'
+      inputs:
+        sourceDirectory: 'bicep_files/**.bicep'
+
+    - script: 'ls -la bicep_files'
+      displayName: 'List source and generated files'
