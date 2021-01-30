@@ -8,8 +8,6 @@ steps:
 - task: BicepInstall@1
   displayName: 'Install Bicep CLI test'
 
-- script: 'echo $PATH'
-
 - task: BicepBuild@1
   displayName: 'Compile Sample .bicep files test'
   inputs:
