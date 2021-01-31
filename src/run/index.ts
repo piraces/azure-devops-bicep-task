@@ -1,5 +1,7 @@
 import * as path from 'path';
+import { platform } from 'os';
 import * as taskLib from 'azure-pipelines-task-lib/task';
+import * as toolLib from 'azure-pipelines-tool-lib/tool';
 import glob from 'glob';
 
 export function getArgumentList(sourceDirectory: string): string[] {
@@ -19,8 +21,21 @@ async function run() {
         }
 
         let bicepTool;
+        const bicepToolName = taskLib.getVariable('BICEP_TOOL_NAME');
+        const bicepToolVersion = taskLib.getVariable('BICEP_TOOL_VERSION');
         try {
-            bicepTool = taskLib.tool(taskLib.which('bicep', true));
+            if (bicepToolName && bicepToolVersion) {
+                bicepTool = toolLib.findLocalTool(bicepToolName, bicepToolVersion);
+            }
+
+            if (!bicepTool) {
+                const defaultToolName = platform() === 'win32' ? 'bicep.exe' : 'bicep';
+                bicepTool = taskLib.which(defaultToolName);
+            }
+
+            if (!bicepTool) {
+                bicepTool = taskLib.getVariable('BICEP_PATH');
+            }
         } catch (error) {
             throw new Error(
                 'Bicep is not installed, please run "Install Bicep CLI"' +
@@ -35,13 +50,18 @@ async function run() {
             windowsVerbatimArguments: true,
             cwd: cwd,
         };
+
         taskLib.debug('Running Bicep build...');
-        bicepTool.arg(args);
-        const bicepProcess = bicepTool.execSync(execOptions);
-        if (bicepProcess.code !== 0) {
-            throw new Error('Failed to execute script');
+
+        if (bicepTool) {
+            const bicepProcess = taskLib.execSync(bicepTool, args, execOptions);
+            if (bicepProcess.code !== 0) {
+                throw new Error('Failed to execute script');
+            }
+            taskLib.debug('Executed successfully');
+        } else {
+            throw new Error('Failed to locate Bicep binary');
         }
-        taskLib.debug('Executed successfully');
     } catch (err) {
         taskLib.setResult(taskLib.TaskResult.Failed, err.message);
     }

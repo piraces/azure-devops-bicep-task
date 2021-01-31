@@ -4,9 +4,9 @@
 
 ![Bicep Logo](https://raw.githubusercontent.com/piraces/azure-devops-bicep-task/main/images/bicep_logo.png)
 
-This is a simple yet useful Azure DevOps set of tasks that allow to install and run [Microsoft Bicep CLI](https://github.com/Azure/bicep) commands in Azure Pipelines.
+This is a simple yet useful Azure DevOps set of tasks that allow to install and run [Microsoft Bicep CLI](https://github.com/Azure/bicep) commands in Azure Pipelines (cross-platform).
 
-[View in Marketplace](https://marketplace.visualstudio.com/items?itemName=piraces.azuredevops-bicep-tasks)
+[View in Marketplace](https://marketplace.visualstudio.com/items?itemName=piraces.bicep-tasks)
 
 # Install Bicep CLI task
 
@@ -20,7 +20,7 @@ This task takes only one `version` parameter input (semantic versioning) which i
 
 ```yaml
 steps:
-- task: BicepInstall@1
+- task: BicepInstall@0
   inputs:
     version: 0.2.328
 ```
@@ -35,7 +35,7 @@ This task takes only one `sourceDirectory` parameter input which is the path whe
 
 ```yaml
 steps:
-- task: BicepBuild@1
+- task: BicepBuild@0
   inputs:
     sourceDirectory: '.\bicep_files\*.bicep'
 ```

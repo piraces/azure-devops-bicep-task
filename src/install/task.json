@@ -1,11 +1,11 @@
 {
-    "id": "9925744d-eff5-498f-9a28-b54172e445be",
+    "id": "c1fb2c87-8141-405c-9ea0-6607cceaca18",
     "name": "BicepInstall",
     "friendlyName": "Install Bicep CLI",
     "description": "Install Bicep CLI",
     "helpMarkDown": "Installs the Bicep CLI",
     "author": "Raúl Piracés",
-    "preview": false,
+    "preview": true,
     "showEnvironmentVariables": false,
     "runsOn": [
       "Agent",
@@ -14,8 +14,8 @@
     ],
     "category": "Azure Pipelines",
     "version": {
-      "Major": 1,
-      "Minor": 0,
+      "Major": 0,
+      "Minor": 1,
       "Patch": 0
     },
     "instanceNameFormat": "Install Bicep CLI",

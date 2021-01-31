@@ -1,10 +1,10 @@
 {
     "manifestVersion": 1,
-    "id": "azuredevops-bicep-tasks",
-    "version": "1.0.3",
+    "id": "bicep-tasks",
+    "version": "0.1.0",
     "name": "Bicep Tasks",
     "publisher": "piraces",
-    "description": "Provides Azure DevOps tasks to install and run Microsoft Bicep CLI commands",
+    "description": "Provides Azure DevOps tasks to install and run Microsoft Bicep CLI commands (cross-platform)",
     "targets": [
       {
         "id": "Microsoft.VisualStudio.Services"
@@ -60,6 +60,12 @@
       "overview": {
         "uri": "https://github.com/piraces/azure-devops-bicep-task/blob/master/README.md"
       },
+      "learn": {
+        "uri": "https://github.com/piraces/azure-devops-bicep-task/blob/master/LEARN.md"
+      },
+      "getstarted": {
+        "uri": "https://github.com/piraces/azure-devops-bicep-task/blob/master/QUICK_START.md"
+      },
       "license": {
         "uri": "https://github.com/piraces/azure-devops-bicep-task/blob/master/LICENSE"
       },
@@ -68,6 +74,12 @@
       },
       "issues": {
         "uri": "https://github.com/piraces/azure-devops-bicep-task/issues"
+      },
+      "support": {
+        "uri": "https://github.com/piraces/azure-devops-bicep-task/discussions"
+      },
+      "privacypolicy": {
+        "uri": "https://github.com/piraces/azure-devops-bicep-task/blob/master/PRIVACY.md"
       }
     },
     "repository": {

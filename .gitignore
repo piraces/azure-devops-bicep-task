@@ -9,3 +9,5 @@ bicep
 bicep_files/*.json
 coverage
 *.vsix
+temp
+temp-tools

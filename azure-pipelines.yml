@@ -8,10 +8,10 @@ stages:
   jobs:
   - job: TestJobLinux
     steps:
-    - task: BicepInstall@1
+    - task: BicepInstall@0
       displayName: 'Install Bicep CLI test'
 
-    - task: BicepBuild@1
+    - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
@@ -25,10 +25,10 @@ stages:
   jobs:
   - job: TestJobWindows
     steps:
-    - task: BicepInstall@1
+    - task: BicepInstall@0
       displayName: 'Install Bicep CLI test'
 
-    - task: BicepBuild@1
+    - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
@@ -42,10 +42,10 @@ stages:
   jobs:
   - job: TestJobMacOS
     steps:
-    - task: BicepInstall@1
+    - task: BicepInstall@0
       displayName: 'Install Bicep CLI test'
 
-    - task: BicepBuild@1
+    - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'

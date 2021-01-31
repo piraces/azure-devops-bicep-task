@@ -1,4 +1,5 @@
 import * as path from 'path';
+import * as fs from 'fs';
 import { platform, arch } from 'os';
 import * as taskLib from 'azure-pipelines-task-lib/task';
 import * as toolLib from 'azure-pipelines-tool-lib/tool';
@@ -50,21 +51,25 @@ async function run() {
         if (!version) {
             version = await getLatestVersionTag();
         }
+        taskLib.setVariable('BICEP_TOOL_VERSION', version);
 
-        let toolPath = toolLib.findLocalTool('bicep', version);
+        const toolName = platform() === 'win32' ? 'bicep.exe' : 'bicep';
+        taskLib.setVariable('BICEP_TOOL_NAME', toolName);
+
+        let toolPath = toolLib.findLocalTool(toolName, version);
         if (!toolPath) {
             taskLib.debug('Bicep not found cached in agent...');
             const downloadUrl = getDownloadUrl(version);
             taskLib.debug(`Downloading binary from ${downloadUrl}`);
-            const downloadPath = await toolLib.downloadTool(downloadUrl, 'bicep');
+            const downloadPath = await toolLib.downloadTool(downloadUrl, toolName);
             taskLib.debug(`Successfully downloaded binary to ${downloadPath}`);
-            toolPath = await toolLib.cacheDir(path.dirname(downloadPath), 'bicep', version);
+            toolPath = await toolLib.cacheDir(path.dirname(downloadPath), toolName, version);
             taskLib.debug(`Bicep version ${version} cached`);
-            toolLib.prependPath(downloadPath);
-        } else {
-            toolLib.prependPath(toolPath);
         }
-
+        toolLib.prependPath(toolPath);
+        const bicepFile = path.join(toolPath, toolName);
+        taskLib.setVariable('BICEP_PATH', bicepFile);
+        fs.chmodSync(bicepFile, '755');
         taskLib.debug('Added tool to PATH');
     } catch (err) {
         taskLib.setResult(taskLib.TaskResult.Failed, err.message);
