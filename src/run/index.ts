@@ -26,15 +26,18 @@ async function run() {
         try {
             if (bicepToolName && bicepToolVersion) {
                 bicepTool = toolLib.findLocalTool(bicepToolName, bicepToolVersion);
+                if (bicepTool) {
+                    bicepTool = path.join(bicepTool, bicepToolName);
+                }
+            }
+
+            if (!bicepTool) {
+                bicepTool = taskLib.getVariable('BICEP_PATH');
             }
 
             if (!bicepTool) {
                 const defaultToolName = platform() === 'win32' ? 'bicep.exe' : 'bicep';
                 bicepTool = taskLib.which(defaultToolName);
-            }
-
-            if (!bicepTool) {
-                bicepTool = taskLib.getVariable('BICEP_PATH');
             }
         } catch (error) {
             throw new Error(
