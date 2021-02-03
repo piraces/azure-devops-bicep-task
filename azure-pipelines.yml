@@ -27,6 +27,9 @@ stages:
       inputs:
         sourceDirectory: 'bicep files/**.bicep'
 
+    - script: 'ls -la "bicep files"'
+      displayName: 'List source and generated files'
+
 - stage: Windows
   pool:
     vmImage: 'windows-latest'
@@ -52,6 +55,9 @@ stages:
       inputs:
         sourceDirectory: 'bicep files/**.bicep'
 
+    - script: 'dir "bicep files"'
+      displayName: 'List source and generated files'
+
 - stage: macOS
   pool:
     vmImage: 'macOS-latest'
@@ -76,3 +82,6 @@ stages:
       displayName: 'Compile Sample .bicep files test 2'
       inputs:
         sourceDirectory: 'bicep files/**.bicep'
+
+    - script: 'ls -la "bicep files"'
+      displayName: 'List source and generated files'
