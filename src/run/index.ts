@@ -46,18 +46,11 @@ async function run() {
             );
         }
         const args = getArgumentList(sourceDirectory);
-        const cwd = taskLib.getPathInput('cwd', false, true);
-        const execOptions = {
-            failOnStdErr: false,
-            ignoreReturnCode: false,
-            windowsVerbatimArguments: true,
-            cwd: cwd,
-        };
 
         taskLib.debug('Running Bicep build...');
 
         if (bicepTool) {
-            const bicepProcess = taskLib.execSync(bicepTool, args, execOptions);
+            const bicepProcess = taskLib.tool(bicepTool).arg(args).execSync();
             if (bicepProcess.code !== 0) {
                 throw new Error('Failed to execute script');
             }

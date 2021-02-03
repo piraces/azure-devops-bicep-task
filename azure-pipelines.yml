@@ -19,6 +19,14 @@ stages:
     - script: 'ls -la bicep_files'
       displayName: 'List source and generated files'
 
+    - script: 'mv bicep_files "bicep files"'
+      displayName: 'Move to other directory with special chars'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test 2'
+      inputs:
+        sourceDirectory: 'bicep files/**.bicep'
+
 - stage: Windows
   pool:
     vmImage: 'windows-latest'
@@ -36,6 +44,14 @@ stages:
     - script: 'dir bicep_files'
       displayName: 'List source and generated files'
 
+    - script: 'move bicep_files "bicep files"'
+      displayName: 'Move to other directory with special chars'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test 2'
+      inputs:
+        sourceDirectory: 'bicep files/**.bicep'
+
 - stage: macOS
   pool:
     vmImage: 'macOS-latest'
@@ -52,3 +68,11 @@ stages:
 
     - script: 'ls -la bicep_files'
       displayName: 'List source and generated files'
+
+    - script: 'mv bicep_files "bicep files"'
+      displayName: 'Move to other directory with special chars'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test 2'
+      inputs:
+        sourceDirectory: 'bicep files/**.bicep'
