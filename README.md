@@ -22,7 +22,7 @@ This task takes only one `version` parameter input (semantic versioning) which i
 steps:
 - task: BicepInstall@0
   inputs:
-    version: 0.2.328
+    version: 0.3.1
 ```
 
 # Run Bicep CLI build command task
@@ -63,12 +63,12 @@ export AGENT_TOOLSDIRECTORY="/tools" # Or any other existing directory
 
 ```powershell
 # For PowerShell:
-$env:INPUT_VERSION = "0.2.328" # Or any other valid Bicep version
+$env:INPUT_VERSION = "0.3.1" # Or any other valid Bicep version
 $env:INPUT_SOURCEDIRECTORY = "C:\bicep_files\*.bicep" # Or any other existing directory with bicep file(s)
 ```
 ```bash
 # For bash:
-export INPUT_VERSION="0.2.328" # Or any other valid Bicep version
+export INPUT_VERSION="0.3.1" # Or any other valid Bicep version
 export INPUT_SOURCEDIRECTORY="C:\bicep_files\*.bicep" # Or any other existing directory with bicep file(s)
 ```
 

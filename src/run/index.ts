@@ -4,12 +4,8 @@ import * as taskLib from 'azure-pipelines-task-lib/task';
 import * as toolLib from 'azure-pipelines-tool-lib/tool';
 import glob from 'glob';
 
-export function getArgumentList(sourceDirectory: string): string[] {
-    const args: Array<string> = new Array<string>();
-    args.push('build');
-    const files = glob.sync(sourceDirectory);
-    const finalArgs = args.concat(files);
-    return finalArgs;
+export function getFilesList(sourceDirectory: string): string[] {
+    return glob.sync(sourceDirectory);
 }
 
 async function run() {
@@ -20,7 +16,7 @@ async function run() {
             throw new Error("The variable 'sourceDirectory' is mandatory.");
         }
 
-        let bicepTool;
+        let bicepTool: any;
         const bicepToolName = taskLib.getVariable('BICEP_TOOL_NAME');
         const bicepToolVersion = taskLib.getVariable('BICEP_TOOL_VERSION');
         try {
@@ -45,15 +41,22 @@ async function run() {
                     ' before this task or ensure Bicep is installed and available in PATH in the agent',
             );
         }
-        const args = getArgumentList(sourceDirectory);
+        const files = getFilesList(sourceDirectory);
 
         taskLib.debug('Running Bicep build...');
 
         if (bicepTool) {
-            const bicepProcess = taskLib.tool(bicepTool).arg(args).execSync();
-            if (bicepProcess.code !== 0) {
-                throw new Error('Failed to execute script');
-            }
+            files.forEach((file: string) => {
+                const args = ['build', file];
+                const bicepProcess = taskLib.tool(bicepTool).arg(args).execSync();
+                
+                if (bicepProcess.code !== 0) {
+                    throw new Error(`Failed to execute script. Related file: ${file}`);
+                } else {
+                    taskLib.debug(`- Built '${file}' successfully`);
+                }
+            });
+            
             taskLib.debug('Executed successfully');
         } else {
             throw new Error('Failed to locate Bicep binary');
