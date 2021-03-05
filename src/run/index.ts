@@ -49,14 +49,14 @@ async function run() {
             files.forEach((file: string) => {
                 const args = ['build', file];
                 const bicepProcess = taskLib.tool(bicepTool).arg(args).execSync();
-                
+
                 if (bicepProcess.code !== 0) {
                     throw new Error(`Failed to execute script. Related file: ${file}`);
                 } else {
                     taskLib.debug(`- Built '${file}' successfully`);
                 }
             });
-            
+
             taskLib.debug('Executed successfully');
         } else {
             throw new Error('Failed to locate Bicep binary');
