@@ -97,7 +97,7 @@ export INPUT_OUTPUTDIRECTORY = "C:\bicep_files\out" # Or any other existing dire
 export INPUT_OUTPUTFILE = "C:\bicep_files\sample1.out.json" # Or any other path/filename to store the generated file
 ```
 
-5. Run `node src/install/index.js` and `node src/build/index.js` to execute the two tasks.
+5. Run `node src/install/index.js` and `node src/run/index.js` to execute the two tasks.
 
 *Note:* the `bicep_files` directory containing `.bicep` files are only for development and testing purposes.
 

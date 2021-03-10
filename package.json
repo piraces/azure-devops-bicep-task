@@ -1,6 +1,6 @@
 {
   "name": "azure-devops-bicep-task",
-  "version": "0.2.2",
+  "version": "0.2.6",
   "description": "Tasks for installing Bicep CLI and running Bicep CLI build commands",
   "main": "index.js",
   "scripts": {

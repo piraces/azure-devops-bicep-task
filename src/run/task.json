@@ -16,7 +16,7 @@
     "version": {
       "Major": 0,
       "Minor": 2,
-      "Patch": 2
+      "Patch": 6
     },
     "instanceNameFormat": "Run Bicep CLI build command",
     "inputs": [
@@ -57,22 +57,24 @@
         "type": "boolean",
         "name": "stdout",
         "label": "Print the output to standard output (stdout)",
+        "defaultValue": "false",
         "required": false,
-        "default": false,
         "helpMarkDown": "To print the output to standard output (stdout) or not"
       },
       {
-        "type": "filePath",
+        "type": "string",
         "name": "outputDirectory",
         "label": "Output directory for .json generated file(s) by Bicep",
+        "defaultValue": "",
         "required": false,
         "visibleRule": "stdout = false",
         "helpMarkDown": "The output directory for .json generated file(s) by Bicep (will have preference over 'filePath')"
       },
       {
-        "type": "filePath",
+        "type": "string",
         "name": "outputFile",
         "label": "Output filename for the .json generated file by Bicep",
+        "defaultValue": "",
         "required": false,
         "visibleRule": "stdout = false && process = single",
         "helpMarkDown": "The output filename for the .json generated file by Bicep"
