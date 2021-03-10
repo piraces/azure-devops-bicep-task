@@ -15,18 +15,67 @@
     "category": "Azure Pipelines",
     "version": {
       "Major": 0,
-      "Minor": 1,
-      "Patch": 3
+      "Minor": 2,
+      "Patch": 2
     },
     "instanceNameFormat": "Run Bicep CLI build command",
     "inputs": [
+      {
+        "name": "process",
+        "type": "pickList",
+        "label": "Directory of files or single file",
+        "defaultValue": "multiple",
+        "required": true,
+        "helpMarkDown": "Choose between an input directory of .bicep files to process or a single file",
+        "options": {
+          "multiple": "Directory",
+          "single": "Single file"
+        },
+        "properties": {
+          "EditableOptions": "False"
+        }
+      },
       {
         "type": "filePath",
         "name": "sourceDirectory",
         "label": "Source Directory for .bicep file(s)",
         "defaultValue": "$(System.DefaultWorkingDirectory)",
         "required": true,
-        "helpMarkDown": "The source directory for .bicep file(s) to compile"
+        "helpMarkDown": "The source directory for .bicep file(s) to compile",
+        "visibleRule": "process = multiple"
+      },
+      {
+        "type": "filePath",
+        "name": "sourceFile",
+        "label": "Source .bicep file",
+        "defaultValue": "",
+        "required": true,
+        "helpMarkDown": "The source .bicep file to compile",
+        "visibleRule": "process = single"
+      },
+      {
+        "type": "boolean",
+        "name": "stdout",
+        "label": "Print the output to standard output (stdout)",
+        "required": false,
+        "default": false,
+        "helpMarkDown": "To print the output to standard output (stdout) or not"
+      },
+      {
+        "type": "filePath",
+        "name": "outputDirectory",
+        "label": "Output directory for .json generated file(s) by Bicep",
+        "required": false,
+        "visibleRule": "stdout = false",
+        "helpMarkDown": "The output directory for .json generated file(s) by Bicep (will have preference over 'filePath')"
+      },
+      {
+        "type": "filePath",
+        "name": "outputFile",
+        "label": "Output filename for the .json generated file by Bicep",
+        "required": false,
+        "visibleRule": "stdout = false && process = single",
+        "helpMarkDown": "The output filename for the .json generated file by Bicep"
       }
     ],
     "execution": {

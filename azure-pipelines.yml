@@ -12,9 +12,44 @@ stages:
       displayName: 'Install Bicep CLI test'
 
     - task: BicepBuild@0
-      displayName: 'Compile Sample .bicep files test'
+      displayName: 'Compile Sample .bicep files test (defaults)'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
+    
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (with output directory)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'bicep_files/**.bicep'
+        outputDirectory: 'bicep_files/out'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (with stdout output)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'bicep_files/**.bicep'
+        stdout: true
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep file test (defaults)'
+      inputs:
+        process: 'single'
+        sourceFile: './bicep_files/sample1.bicep'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep file test (with output filename)'
+      inputs:
+        process: 'single'
+        sourceFile: './bicep_files/sample1.bicep'
+        stdout: false
+        outputFile: './bicep_files/sample1.out.json'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep file test (with stdout output)'
+      inputs:
+        process: 'single'
+        sourceFile: './bicep_files/sample1.bicep'
+        stdout: true
 
     - script: 'ls -la bicep_files'
       displayName: 'List source and generated files'
@@ -40,9 +75,44 @@ stages:
       displayName: 'Install Bicep CLI test'
 
     - task: BicepBuild@0
-      displayName: 'Compile Sample .bicep files test'
+      displayName: 'Compile Sample .bicep files test (defaults)'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (with output directory)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'bicep_files\**.bicep'
+        outputDirectory: 'bicep_files\out'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (with stdout output)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'bicep_files\**.bicep'
+        stdout: true
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep file test (defaults)'
+      inputs:
+        process: 'single'
+        sourceFile: '.\bicep_files\sample1.bicep'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep file test (with output filename)'
+      inputs:
+        process: 'single'
+        sourceFile: '.\bicep_files\sample1.bicep'
+        stdout: false
+        outputFile: '.\bicep_files\sample1.out.json'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep file test (with stdout output)'
+      inputs:
+        process: 'single'
+        sourceFile: '.\bicep_files\sample1.bicep'
+        stdout: true
 
     - script: 'dir bicep_files'
       displayName: 'List source and generated files'
@@ -68,9 +138,45 @@ stages:
       displayName: 'Install Bicep CLI test'
 
     - task: BicepBuild@0
-      displayName: 'Compile Sample .bicep files test'
+      displayName: 'Compile Sample .bicep files test (defaults)'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (with output directory)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'bicep_files/**.bicep'
+        outputDirectory: 'bicep_files/out'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (with stdout output)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'bicep_files/**.bicep'
+        stdout: true
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep file test (defaults)'
+      inputs:
+        process: 'single'
+        sourceFile: './bicep_files/sample1.bicep'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep file test (with output filename)'
+      inputs:
+        process: 'single'
+        sourceFile: './bicep_files/sample1.bicep'
+        stdout: false
+        outputFile: './bicep_files/sample1.out.json'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep file test (with stdout output)'
+      inputs:
+        process: 'single'
+        sourceFile: './bicep_files/sample1.bicep'
+        stdout: true
+  
 
     - script: 'ls -la bicep_files'
       displayName: 'List source and generated files'

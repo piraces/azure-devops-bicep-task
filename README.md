@@ -31,21 +31,36 @@ This tasks runs the `bicep build` command with an input path containing `.bicep`
 
 This task takes only one `sourceDirectory` parameter input which is the path where the bicep file/files reside (can be a glob, or a single file).
 
-## Sample YAML with the task
+## Sample YAML with the task (for multiple files)
 
 ```yaml
 steps:
 - task: BicepBuild@0
   inputs:
+    process: 'multiple'
     sourceDirectory: '.\bicep_files\*.bicep'
+    stdout: false # Note if stdout is true 'outputDirectory' will not be interpreted
+    outputDirectory: '.\bicep_files\out' # Only when 'stdout' is false or not defined
+```
+
+## Sample YAML with the task (for single file)
+
+```yaml
+steps:
+- task: BicepBuild@0
+  inputs:
+    process: 'single'
+    sourceFile: '.\bicep_files\sample1.bicep'
+    stdout: false # Note if stdout is true 'outputDirectory' will not be interpreted
+    outputFile: '.\bicep_files\sample1.out.json' # Only when 'stdout' is false or not defined and 'outputDirectory' is empty or not defined
 ```
 
 # Local Development
 
 **Note:** [Bicep](https://github.com/Azure/bicep) must be installed in the local machine. [TypeScript](https://www.typescriptlang.org/download) must be also installed as a global package (`npm i typescript -g`).
 
-1. Run `npm install` in the `src` directory.
-2. Run `tsc` in the `src` directory.
+1. Run `npm install` in the root directory.
+2. Run `npm run build` in the root directory.
 3. Define the needed agent environment parameters:
 
 ```powershell
@@ -59,20 +74,30 @@ export AGENT_TEMPDIRECTORY="/temp" # Or any other existing directory
 export AGENT_TOOLSDIRECTORY="/tools" # Or any other existing directory
 ```
 
-4. (Optional) Set variables for the tasks:
+4. (Optional) Set variables for the tasks (as you want to test):
 
 ```powershell
 # For PowerShell:
 $env:INPUT_VERSION = "0.3.1" # Or any other valid Bicep version
+$env:INPUT_PROCESS = "multiple" # Selection between 'multiple' or 'single' file(s) processing
 $env:INPUT_SOURCEDIRECTORY = "C:\bicep_files\*.bicep" # Or any other existing directory with bicep file(s)
+$env:INPUT_SOURCEFILE = "C:\bicep_files\sample1.bicep" # Or any other existing bicep file
+$env:INPUT_STDOUT = $false # To print the output to standard output (stdout) or not
+$env:INPUT_OUTPUTDIRECTORY = "C:\bicep_files\out" # Or any other existing directory to store the json generated file(s)
+$env:INPUT_OUTPUTFILE = "C:\bicep_files\sample1.out.json" # Or any other path/filename to store the generated file
 ```
 ```bash
 # For bash:
 export INPUT_VERSION="0.3.1" # Or any other valid Bicep version
+export INPUT_PROCESS = "multiple" # Selection between 'multiple' or 'single' file(s) processing
 export INPUT_SOURCEDIRECTORY="C:\bicep_files\*.bicep" # Or any other existing directory with bicep file(s)
+export INPUT_SOURCEFILE = "C:\bicep_files\sample1.bicep" # Or any other existing bicep file
+export INPUT_STDOUT = false # To print the output to standard output (stdout) or not
+export INPUT_OUTPUTDIRECTORY = "C:\bicep_files\out" # Or any other existing directory to store the json generated file(s)
+export INPUT_OUTPUTFILE = "C:\bicep_files\sample1.out.json" # Or any other path/filename to store the generated file
 ```
 
-5. Run `node install/index.js` and `node run/index.js` to execute the two tasks.
+5. Run `node src/install/index.js` and `node src/build/index.js` to execute the two tasks.
 
 *Note:* the `bicep_files` directory containing `.bicep` files are only for development and testing purposes.
 

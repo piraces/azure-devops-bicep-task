@@ -1,7 +1,7 @@
 import * as process from 'process';
 process.env.INPUT_SOURCEDIRECTORY = '';
 import glob from 'glob';
-import { getFilesList } from '../../src/run/index';
+import { getFilesList } from '../../src/build/index';
 
 jest.mock('glob');
 
