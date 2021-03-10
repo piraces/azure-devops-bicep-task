@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --passWithNoTests",
     "coverage": "jest --collectCoverage",
+    "build": "tsc",
     "lint": "eslint **/*.ts --fix",
     "lint:no-fix": "eslint **/*.ts --quiet"
   },
