@@ -1,12 +1,9 @@
 @allowed([
-  'Standard_LRS'
+  'Premium_LRS'
   'Standard_GRS'
+  'Standard_LRS'
   'Standard_RAGRS'
   'Standard_ZRS'
-  'Premium_LRS'
-  'Premium_ZRS'
-  'Standard_GZRS'
-  'Standard_RAGZRS'
 ])
 @description('Type of redundancy for your storage account')
 param storageAccountType string = 'Standard_GRS'
