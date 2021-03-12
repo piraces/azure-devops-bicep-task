@@ -99,7 +99,7 @@ export INPUT_OUTPUTFILE = "C:\bicep_files\sample1.out.json" # Or any other path/
 
 5. Run `node src/install/index.js` and `node src/run/index.js` to execute the two tasks.
 
-*Note:* the `bicep_files` directory containing `.bicep` files are only for development and testing purposes.
+*Note:* the `bicep_files` and the `arm_templates` directories containing `.bicep` and `.json` files are only for development and testing purposes.
 
 # Contributing
 
