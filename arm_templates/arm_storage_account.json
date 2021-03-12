@@ -22,7 +22,7 @@
       }
     },
     "variables": {
-      "storageAccountName": "[concat(uniqueString(resourceGroup().id),'storage')]"
+      "storageAccountName": "bicep_test_storage"
     },
     "resources": [
       {

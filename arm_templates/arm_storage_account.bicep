@@ -8,7 +8,7 @@
 @description('Type of redundancy for your storage account')
 param storageAccountType string = 'Standard_GRS'
 
-var storageAccountName_var = '${uniqueString(resourceGroup().id)}storage'
+var storageAccountName_var = 'bicep_test_storage'
 
 resource storageAccountName 'Microsoft.Storage/storageAccounts@2016-01-01' = {
   name: storageAccountName_var
