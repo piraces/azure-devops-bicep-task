@@ -22,7 +22,7 @@
       }
     },
     "variables": {
-      "storageAccountName": "bicep_test_storage"
+      "storageAccountName": "bicepTestStorage"
     },
     "resources": [
       {
