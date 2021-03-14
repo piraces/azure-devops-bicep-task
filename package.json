@@ -1,6 +1,6 @@
 {
   "name": "azure-devops-bicep-task",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Tasks for installing Bicep CLI and running Bicep CLI build commands",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "coverage": "jest --collectCoverage",
     "build": "tsc",
     "lint": "eslint **/*.ts --fix",
-    "lint:no-fix": "eslint **/*.ts --quiet"
+    "lint:no-fix": "eslint **/*.ts --quiet",
+    "publish": "tfx extension create --manifest-globs vss-extension.json"
   },
   "husky": {
     "hooks": {

@@ -36,6 +36,8 @@ function restoreMocks() {
 }
 
 describe('getDownloadUrl returns a valid URL', () => {
+    afterEach(() => restoreMocks());
+
     test.each([
         [ValidArchitecture, DarwinPlatform, 'https://github.com/Azure/bicep/releases/download/v0.2.328/bicep-osx-x64'],
         [ValidArchitecture, LinuxPlatform, 'https://github.com/Azure/bicep/releases/download/v0.2.328/bicep-linux-x64'],
@@ -48,8 +50,6 @@ describe('getDownloadUrl returns a valid URL', () => {
         prepareMocks(architecture, platform);
         const releaseUrl = getDownloadUrl('0.2.328');
         expect(releaseUrl).toBe(expected);
-
-        restoreMocks();
     });
 
     test('if architecture is invalid and platform is any', async () => {
@@ -57,25 +57,21 @@ describe('getDownloadUrl returns a valid URL', () => {
         expect(() => getDownloadUrl('0.2.328')).toThrowError(
             `Architecture ${InvalidArchitecture} is not supported yet by Bicep`,
         );
-
-        restoreMocks();
     });
 
     test('if architecture is valid and platform is not supported', async () => {
         prepareMocks(ValidArchitecture, InvalidPlatform);
         expect(() => getDownloadUrl('0.2.328')).toThrowError(`Unexpected OS '${InvalidPlatform}'`);
-
-        restoreMocks();
     });
 });
 
 describe('getLatestVersionTag returns a valid tag', () => {
+    afterEach(() => restoreMocks());
+
     test('if github API is available', async () => {
         prepareMocks(ValidArchitecture, WindowsPlatform, '0.2.328', false);
         const latestVersion = await getLatestVersionTag();
         expect(latestVersion).toBe('0.2.328');
-
-        restoreMocks();
     });
 
     test('if github API is not available / changed', async () => {
@@ -85,6 +81,5 @@ describe('getLatestVersionTag returns a valid tag', () => {
         } catch (err) {
             expect(err).toEqual(new Error(`[FATAL] Error while retrieving latest version tag: 'Just Testing'`));
         }
-        restoreMocks();
     });
 });

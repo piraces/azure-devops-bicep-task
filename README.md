@@ -29,7 +29,9 @@ steps:
 
 This tasks runs the `bicep build` command with an input path containing `.bicep` file(s) ([glob](https://en.wikipedia.org/wiki/Glob_(programming)) is supported). After running the task, the resulting `.json` files are left in the same folder as the `.bicep` file resides.
 
-This task takes only one `sourceDirectory` parameter input which is the path where the bicep file/files reside (can be a glob, or a single file).
+This task takes only one `sourceDirectory` parameter input which is the path where the bicep file/files reside (can be a glob, directory, or a single file).
+
+**Note**: When using a directory as `sourceDirectory`, all files included in the directory will be processed (including files in subfolders). Same behaviour as specifying the directory with the glob wildcard `**`. Example: `./bicep_files` would be interpreted as `./bicep_files/**`.
 
 ## Sample YAML with the task (for multiple files)
 

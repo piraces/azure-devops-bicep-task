@@ -12,7 +12,12 @@ stages:
       displayName: 'Install Bicep CLI test'
 
     - task: BicepBuild@0
-      displayName: 'Compile Sample .bicep files test (defaults)'
+      displayName: 'Compile Sample .bicep files test (defaults with dir)'
+      inputs:
+        sourceDirectory: 'bicep_files/'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (defaults with glob)'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
     
@@ -75,7 +80,12 @@ stages:
       displayName: 'Install Bicep CLI test'
 
     - task: BicepBuild@0
-      displayName: 'Compile Sample .bicep files test (defaults)'
+      displayName: 'Compile Sample .bicep files test (defaults with dir)'
+      inputs:
+        sourceDirectory: 'bicep_files/'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (defaults with glob)'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
 
@@ -138,7 +148,12 @@ stages:
       displayName: 'Install Bicep CLI test'
 
     - task: BicepBuild@0
-      displayName: 'Compile Sample .bicep files test (defaults)'
+      displayName: 'Compile Sample .bicep files test (defaults with dir)'
+      inputs:
+        sourceDirectory: 'bicep_files/'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (defaults with glob)'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
 
