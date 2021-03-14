@@ -2,8 +2,8 @@ import * as path from 'path';
 import { platform } from 'os';
 import * as taskLib from 'azure-pipelines-task-lib/task';
 import * as toolLib from 'azure-pipelines-tool-lib/tool';
-import { createDirectoryIfNotExists, getFilesList } from '../common/fileUtils';
-import { ProcessingType } from '../common/enums/processingType';
+import { createDirectoryIfNotExists, getFilesList } from './common/fileUtils';
+import { ProcessingType } from './common/enums/processingType';
 
 let processType: string | undefined;
 let sourceDirectory: string | undefined;
@@ -119,12 +119,12 @@ async function run() {
         } else if (outputFile && processingType === ProcessingType.Single) {
             additionalArgsByInputs.push('--outfile');
             additionalArgsByInputs.push(outputFile);
-            createDirectoryIfNotExists(outputFile);
+            createDirectoryIfNotExists(outputFile, true);
         } else if (outputDirectory) {
             taskLib.debug(`Output files will be stored in '${outputDirectory}'`);
             additionalArgsByInputs.push('--outdir');
             additionalArgsByInputs.push(outputDirectory);
-            createDirectoryIfNotExists(outputDirectory);
+            createDirectoryIfNotExists(outputDirectory, false);
         } else {
             taskLib.debug(
                 `No output directory specified... Output files will be stored in source directory: '${sourceDirectory}'`,

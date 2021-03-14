@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { createDirectoryIfNotExists, getFilesList } from '../../src/common/fileUtils';
+import { createDirectoryIfNotExists, getFilesList } from '../../../src/run/common/fileUtils';
 
 jest.mock('fs');
 
@@ -35,7 +35,7 @@ describe('getFilesList perform valid actions', () => {
         getFilesList('./bicep_files');
         expect(globHasMagicMock).toHaveBeenCalled();
         expect(pathJoinMock).toHaveBeenCalled();
-        expect(globSyncMock).toHaveBeenCalledWith('bicep_files/**');
+        expect(globSyncMock).toHaveBeenCalledWith('bicep_files/**', { nodir: true });
     });
 
     test('if path has wildcards', () => {
@@ -44,7 +44,7 @@ describe('getFilesList perform valid actions', () => {
         getFilesList('./bicep_files/*.bicep');
         expect(globHasMagicMock).toHaveBeenCalled();
         expect(pathJoinMock).not.toHaveBeenCalled();
-        expect(globSyncMock).toHaveBeenCalledWith('./bicep_files/*.bicep');
+        expect(globSyncMock).toHaveBeenCalledWith('./bicep_files/*.bicep', { nodir: true });
     });
 });
 
@@ -54,7 +54,7 @@ describe('createDirectoryIfNotExists creates directory if not exists', () => {
     test('if path already exists', () => {
         prepareMocks(true);
 
-        createDirectoryIfNotExists('any_directory');
+        createDirectoryIfNotExists('any_directory', false);
         expect(existsSyncMock).toHaveBeenCalled();
         expect(mkdirSyncMock).not.toHaveBeenCalled();
     });
@@ -62,7 +62,7 @@ describe('createDirectoryIfNotExists creates directory if not exists', () => {
     test('if path not exists', () => {
         prepareMocks(false);
 
-        createDirectoryIfNotExists('any_directory');
+        createDirectoryIfNotExists('any_directory', false);
         expect(existsSyncMock).toHaveBeenCalled();
         expect(mkdirSyncMock).toHaveBeenCalled();
     });

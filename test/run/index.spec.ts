@@ -1,4 +1,4 @@
-import { ProcessingType } from '../../src/common/enums/processingType';
+import { ProcessingType } from '../../src/run/common/enums/processingType';
 import { checkInputsAreValid, getProcessingTypeForFiles } from '../../src/run/index';
 
 describe('checkInputsAreValid throws correct errors', () => {
