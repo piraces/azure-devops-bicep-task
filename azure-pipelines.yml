@@ -20,7 +20,12 @@ stages:
       displayName: 'Compile Sample .bicep files test (defaults with glob)'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
-    
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (all in entire directory tree with glob)'
+      inputs:
+        sourceDirectory: '**/**.bicep'
+
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (with output directory)'
       inputs:
@@ -56,7 +61,7 @@ stages:
         sourceFile: './bicep_files/sample1.bicep'
         stdout: true
 
-    - script: 'ls -la bicep_files'
+    - script: 'ls -laR bicep_files'
       displayName: 'List source and generated files'
 
     - script: 'mv bicep_files "bicep files"'
@@ -67,7 +72,7 @@ stages:
       inputs:
         sourceDirectory: 'bicep files/**.bicep'
 
-    - script: 'ls -la "bicep files"'
+    - script: 'ls -laR "bicep files"'
       displayName: 'List source and generated files'
 
 - stage: Windows
@@ -88,6 +93,11 @@ stages:
       displayName: 'Compile Sample .bicep files test (defaults with glob)'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (all in entire directory tree with glob)'
+      inputs:
+        sourceDirectory: '**/**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (with output directory)'
@@ -124,7 +134,7 @@ stages:
         sourceFile: '.\bicep_files\sample1.bicep'
         stdout: true
 
-    - script: 'dir bicep_files'
+    - script: 'dir /s bicep_files'
       displayName: 'List source and generated files'
 
     - script: 'move bicep_files "bicep files"'
@@ -135,7 +145,7 @@ stages:
       inputs:
         sourceDirectory: 'bicep files/**.bicep'
 
-    - script: 'dir "bicep files"'
+    - script: 'dir /s "bicep files"'
       displayName: 'List source and generated files'
 
 - stage: macOS
@@ -156,6 +166,11 @@ stages:
       displayName: 'Compile Sample .bicep files test (defaults with glob)'
       inputs:
         sourceDirectory: 'bicep_files/**.bicep'
+
+    - task: BicepBuild@0
+      displayName: 'Compile Sample .bicep files test (all in entire directory tree with glob)'
+      inputs:
+        sourceDirectory: '**/**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (with output directory)'
@@ -191,9 +206,8 @@ stages:
         process: 'single'
         sourceFile: './bicep_files/sample1.bicep'
         stdout: true
-  
 
-    - script: 'ls -la bicep_files'
+    - script: 'ls -laR bicep_files'
       displayName: 'List source and generated files'
 
     - script: 'mv bicep_files "bicep files"'
@@ -204,5 +218,5 @@ stages:
       inputs:
         sourceDirectory: 'bicep files/**.bicep'
 
-    - script: 'ls -la "bicep files"'
+    - script: 'ls -laR "bicep files"'
       displayName: 'List source and generated files'
