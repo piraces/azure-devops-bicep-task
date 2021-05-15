@@ -1,6 +1,6 @@
 import { OutputType } from '../../src/run/common/enums/outputType';
 import { ProcessingType } from '../../src/run/common/enums/processingType';
-import { checkInputsAreValid, getOutputTypeForFiles, getProcessingTypeForFiles } from '../../src/run/index';
+import { checkInputsAreValid, getOutputTypeForFiles, getProcessingTypeForFiles } from '../../src/decompile/index';
 
 describe('checkInputsAreValid throws correct errors', () => {
     test('if source directory is not defined and process type is multiple', () => {

@@ -90,7 +90,7 @@ export function checkForVersionCompatibility(outputProcess: OutputType): void {
 
     const bicepVersionNumber = Number.parseFloat(bicepToolVersion);
     if (
-        (bicepVersionNumber < 0.4 ||
+        (bicepVersionNumber < 0.3 ||
             bicepToolVersion === '0.3.255' ||
             bicepToolVersion === '0.3.126' ||
             bicepToolVersion === '0.3.1') &&
