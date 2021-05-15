@@ -63,6 +63,8 @@ This tasks runs the `bicep decompile` command with an input path containing `.js
 
 This task takes only one `sourceDirectory` or `sourceFile` parameter input which is the path where the bicep file/files reside (can be a glob, directory, or a single file).
 
+**Note**: Only files with `.json` extension will be processed.
+
 **Note**: When using a directory as `sourceDirectory`, all files included in the directory will be processed (including files in subfolders). Same behaviour as specifying the directory with the glob wildcard `**`. Example: `./arm_templates` would be interpreted as `./arm_templates/**`.
 
 ## Sample YAML with the task (for multiple files)

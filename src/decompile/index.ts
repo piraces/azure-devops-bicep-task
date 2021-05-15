@@ -78,7 +78,7 @@ export function getOutputTypeForFiles(
     if (outputDirectory || outputProcess === 'outDir') {
         return OutputType.OutDir;
     }
-    
+
     return OutputType.Default;
 }
 
@@ -89,8 +89,13 @@ export function checkForVersionCompatibility(outputProcess: OutputType): void {
     }
 
     const bicepVersionNumber = Number.parseFloat(bicepToolVersion);
-    if ((bicepVersionNumber < 0.4 || bicepToolVersion === '0.3.255' || bicepToolVersion === '0.3.126' || bicepToolVersion === '0.3.1')
-        && (outputProcess == OutputType.OutDir || outputProcess == OutputType.OutFile)) {
+    if (
+        (bicepVersionNumber < 0.4 ||
+            bicepToolVersion === '0.3.255' ||
+            bicepToolVersion === '0.3.126' ||
+            bicepToolVersion === '0.3.1') &&
+        (outputProcess == OutputType.OutDir || outputProcess == OutputType.OutFile)
+    ) {
         throw new Error(
             `The version '${bicepToolVersion}' of Bicep CLI does not support an output directory or an output file as an option... Consider upgrading to a latest version of the Bicep CLI.`,
         );

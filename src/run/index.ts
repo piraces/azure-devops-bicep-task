@@ -78,7 +78,7 @@ export function getOutputTypeForFiles(
     if (outputDirectory || outputProcess === 'outDir') {
         return OutputType.OutDir;
     }
-    
+
     return OutputType.Default;
 }
 

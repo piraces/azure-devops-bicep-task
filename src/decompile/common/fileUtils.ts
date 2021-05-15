@@ -8,7 +8,8 @@ export function getFilesList(directory: string): string[] {
         directoryToGetFiles = path.join(directoryToGetFiles, '**');
     }
     directoryToGetFiles = directoryToGetFiles.replace(/\\/g, '/');
-    return glob.sync(directoryToGetFiles, { nodir: true });
+    const allFiles = glob.sync(directoryToGetFiles, { nodir: true });
+    return allFiles.filter((file) => file.endsWith('.json'));
 }
 
 export function createDirectoryIfNotExists(directory: string, checkDirname: boolean): void {
