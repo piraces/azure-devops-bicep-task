@@ -89,7 +89,8 @@ export function checkForVersionCompatibility(outputProcess: OutputType): void {
     }
 
     const bicepVersionNumber = Number.parseFloat(bicepToolVersion);
-    if (bicepVersionNumber < 0.3 && (outputProcess == OutputType.OutDir || outputProcess == OutputType.OutFile)) {
+    if ((bicepVersionNumber < 0.4 || bicepToolVersion === '0.3.255' || bicepToolVersion === '0.3.126' || bicepToolVersion === '0.3.1')
+        && (outputProcess == OutputType.OutDir || outputProcess == OutputType.OutFile)) {
         throw new Error(
             `The version '${bicepToolVersion}' of Bicep CLI does not support an output directory or an output file as an option... Consider upgrading to a latest version of the Bicep CLI.`,
         );
@@ -126,15 +127,15 @@ export function getBicepTool(): string | undefined {
     }
 }
 
-export function executeBicepBuild(files: string[], bicepTool: string, additionalArgsByInputs: string[]): void {
+export function executeBicepDecompile(files: string[], bicepTool: string, additionalArgsByInputs: string[]): void {
     files.forEach((file: string) => {
-        const args = ['build', file, ...additionalArgsByInputs];
+        const args = ['decompile', file, ...additionalArgsByInputs];
         const bicepProcess = taskLib.tool(bicepTool).arg(args).execSync();
 
         if (bicepProcess.code !== 0) {
             throw new Error(`Failed to execute script. Related file: ${file}`);
         } else {
-            taskLib.debug(`- Built '${file}' successfully`);
+            taskLib.debug(`- Decompiled '${file}' successfully`);
         }
     });
 }
@@ -185,9 +186,9 @@ async function run() {
             throw new Error('Failed to locate Bicep binary');
         }
 
-        taskLib.debug('Running Bicep build...');
+        taskLib.debug('Running Bicep decompile...');
 
-        executeBicepBuild(files, bicepTool, additionalArgsByInputs);
+        executeBicepDecompile(files, bicepTool, additionalArgsByInputs);
 
         taskLib.debug('Executed successfully');
     } catch (err) {

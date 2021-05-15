@@ -22,14 +22,14 @@ This task takes only one `version` parameter input (semantic versioning) which i
 steps:
 - task: BicepInstall@0
   inputs:
-    version: 0.3.1
+    version: 0.3.539
 ```
 
 # Run Bicep CLI build command task
 
 This tasks runs the `bicep build` command with an input path containing `.bicep` file(s) ([glob](https://en.wikipedia.org/wiki/Glob_(programming)) is supported). After running the task, the resulting `.json` files are left in the same folder as the `.bicep` file resides.
 
-This task takes only one `sourceDirectory` parameter input which is the path where the bicep file/files reside (can be a glob, directory, or a single file).
+This task takes only one `sourceDirectory` or `sourceFile` parameter input which is the path where the bicep file/files reside (can be a glob, directory, or a single file).
 
 **Note**: When using a directory as `sourceDirectory`, all files included in the directory will be processed (including files in subfolders). Same behaviour as specifying the directory with the glob wildcard `**`. Example: `./bicep_files` would be interpreted as `./bicep_files/**`.
 
@@ -56,6 +56,57 @@ steps:
     stdout: false # Note if stdout is true 'outputDirectory' will not be interpreted
     outputFile: '.\bicep_files\sample1.out.json' # Only when 'stdout' is false or not defined and 'outputDirectory' is empty or not defined
 ```
+
+# Run Bicep CLI decompile command task
+
+This tasks runs the `bicep decompile` command with an input path containing `.json` file(s) ([glob](https://en.wikipedia.org/wiki/Glob_(programming)) is supported). After running the task, the resulting `.bicep` files are left in the same folder as the `.json` file resides.
+
+This task takes only one `sourceDirectory` or `sourceFile` parameter input which is the path where the bicep file/files reside (can be a glob, directory, or a single file).
+
+**Note**: When using a directory as `sourceDirectory`, all files included in the directory will be processed (including files in subfolders). Same behaviour as specifying the directory with the glob wildcard `**`. Example: `./arm_templates` would be interpreted as `./arm_templates/**`.
+
+## Sample YAML with the task (for multiple files)
+
+```yaml
+steps:
+- task: BicepDecompile@0
+  inputs:
+    process: 'multiple'
+    sourceDirectory: '.\arm_templates\*.json'
+    stdout: false # Note if stdout is true 'outputDirectory' will not be interpreted
+    outputDirectory: '.\arm_templates\out' # Only when 'stdout' is false or not defined
+```
+
+## Sample YAML with the task (for single file)
+
+```yaml
+steps:
+- task: BicepDecompile@0
+  inputs:
+    process: 'single'
+    sourceFile: '.\arm_templates\arm_storage_account.json'
+    stdout: false # Note if stdout is true 'outputDirectory' will not be interpreted
+    outputFile: '.\arm_templates\sample1.out.bicep' # Only when 'stdout' is false or not defined and 'outputDirectory' is empty or not defined
+```
+
+# Important notes
+
+Starting on version 0.3 of the tasks, the user can specify an `outputProcess` input to choose the output option. The available options are:
+
+- `default`: Default (same name and directory as input files).
+- `outDir`: Selecting an output directory with the input `outputDirectory`.
+- `outFile`: Selecting an output file with the input `outputFile`.
+- `stdout`: Standard output (stdout).
+
+Nevertheless, this option can be skipped and only specify the inputs `outputDirectory`, `outputFile`, `stdout` accordingly. **Note that the inputs are exclusive. Do not specify multiple output options at once**.
+
+The order of preference of the inputs if `outputProcess` is not defined is the following:
+
+- `stdout`: if set to true.
+- `outputFile`: if set.
+- `outputDirectory`: if set.
+
+If no input regarding output options is set, it will default to the source directory and source filename as output (only changing the extension).
 
 # Local Development
 

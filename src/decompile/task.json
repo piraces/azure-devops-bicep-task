@@ -1,9 +1,9 @@
 {
-    "id": "16e7624f-1531-47bc-b81e-7274655f7d13",
-    "name": "BicepBuild",
-    "friendlyName": "Run Bicep CLI build command",
-    "description": "Run Bicep CLI build command",
-    "helpMarkDown": "Runs the Bicep CLI build command",
+    "id": "20f4b3c9-8187-470f-91ea-96e5650fabc2",
+    "name": "BicepDecompile",
+    "friendlyName": "Run Bicep CLI decompile command",
+    "description": "Run Bicep CLI decompile command",
+    "helpMarkDown": "Runs the Bicep CLI decompile command",
     "author": "Raúl Piracés",
     "preview": true,
     "showEnvironmentVariables": false,
@@ -18,7 +18,7 @@
       "Minor": 3,
       "Patch": 1
     },
-    "instanceNameFormat": "Run Bicep CLI build command",
+    "instanceNameFormat": "Run Bicep CLI decompile command",
     "inputs": [
       {
         "name": "process",
@@ -26,7 +26,7 @@
         "label": "Directory of files or single file",
         "defaultValue": "multiple",
         "required": true,
-        "helpMarkDown": "Choose between an input directory of .bicep files to process or a single file",
+        "helpMarkDown": "Choose between an input directory of .json files to process or a single file",
         "options": {
           "multiple": "Directory",
           "single": "Single file"
@@ -38,19 +38,19 @@
       {
         "type": "filePath",
         "name": "sourceDirectory",
-        "label": "Source Directory for .bicep file(s)",
+        "label": "Source Directory for .json file(s)",
         "defaultValue": "$(System.DefaultWorkingDirectory)",
         "required": true,
-        "helpMarkDown": "The source directory for .bicep file(s) to compile",
+        "helpMarkDown": "The source directory for .json file(s) to compile",
         "visibleRule": "process = multiple"
       },
       {
         "type": "filePath",
         "name": "sourceFile",
-        "label": "Source .bicep file",
+        "label": "Source .json file",
         "defaultValue": "",
         "required": true,
-        "helpMarkDown": "The source .bicep file to compile",
+        "helpMarkDown": "The source .json file to decompile",
         "visibleRule": "process = single"
       },
       {
@@ -59,7 +59,7 @@
         "label": "Output options for processed files",
         "defaultValue": "default",
         "required": true,
-        "helpMarkDown": "Choose between an output directory, and output file (only when processing a single file), or stdout for the output of the compilation",
+        "helpMarkDown": "Choose between an output directory, and output file (only when processing a single file), or stdout for the output of the decompilation",
         "options": {
           "default": "Default (same name and directory as input files)",
           "outDir": "Directory",
@@ -82,20 +82,20 @@
       {
         "type": "string",
         "name": "outputDirectory",
-        "label": "Output directory for .json generated file(s) by Bicep",
+        "label": "Output directory for .bicep generated file(s) by Bicep",
         "defaultValue": "",
         "required": false,
         "visibleRule": "outputProcess = outDir",
-        "helpMarkDown": "The output directory for .json generated file(s) by Bicep (will have preference over 'filePath')"
+        "helpMarkDown": "The output directory for .bicep generated file(s) by Bicep (will have preference over 'filePath')"
       },
       {
         "type": "string",
         "name": "outputFile",
-        "label": "Output filename for the .json generated file by Bicep",
+        "label": "Output filename for the .bicep generated file by Bicep",
         "defaultValue": "",
         "required": false,
         "visibleRule": "outputProcess = outFile && process = single",
-        "helpMarkDown": "The output filename for the .json generated file by Bicep"
+        "helpMarkDown": "The output filename for the .bicep generated file by Bicep"
       }
     ],
     "execution": {

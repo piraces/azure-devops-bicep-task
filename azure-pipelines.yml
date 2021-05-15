@@ -75,6 +75,70 @@ stages:
     - script: 'ls -laR "bicep files"'
       displayName: 'List source and generated files'
 
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (defaults with dir)'
+      inputs:
+        sourceDirectory: 'arm_templates/'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (defaults with glob)'
+      inputs:
+        sourceDirectory: 'arm_templates/**.json'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (all in entire directory tree with glob)'
+      inputs:
+        sourceDirectory: '**/**.json'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (with output directory)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'arm_templates/**.json'
+        outputDirectory: 'arm_templates/out'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (with stdout output)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'arm_templates/**.json'
+        stdout: true
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json file test (defaults)'
+      inputs:
+        process: 'single'
+        sourceFile: './arm_templates/arm_storage_account.json'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json file test (with output filename)'
+      inputs:
+        process: 'single'
+        sourceFile: './arm_templates/arm_storage_account.json'
+        stdout: false
+        outputFile: './arm_templates/sample1.out.bicep'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json file test (with stdout output)'
+      inputs:
+        process: 'single'
+        sourceFile: './arm_templates/arm_storage_account.json'
+        stdout: true
+
+    - script: 'ls -laR arm_templates'
+      displayName: 'List source and generated files'
+
+    - script: 'mv arm_templates "arm templates"'
+      displayName: 'Move to other directory with special chars'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test 2'
+      inputs:
+        sourceDirectory: 'arm templates/**.json'
+
+    - script: 'ls -laR "arm templates"'
+      displayName: 'List source and generated files'
+
 - stage: Windows
   pool:
     vmImage: 'windows-latest'
@@ -148,6 +212,70 @@ stages:
     - script: 'dir /s "bicep files"'
       displayName: 'List source and generated files'
 
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (defaults with dir)'
+      inputs:
+        sourceDirectory: 'arm_templates/'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (defaults with glob)'
+      inputs:
+        sourceDirectory: 'arm_templates/**.json'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (all in entire directory tree with glob)'
+      inputs:
+        sourceDirectory: '**/**.json'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (with output directory)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'arm_templates/**.json'
+        outputDirectory: 'arm_templates/out'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (with stdout output)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'arm_templates/**.json'
+        stdout: true
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json file test (defaults)'
+      inputs:
+        process: 'single'
+        sourceFile: './arm_templates/arm_storage_account.json'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json file test (with output filename)'
+      inputs:
+        process: 'single'
+        sourceFile: './arm_templates/arm_storage_account.json'
+        stdout: false
+        outputFile: './arm_templates/sample1.out.bicep'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json file test (with stdout output)'
+      inputs:
+        process: 'single'
+        sourceFile: './arm_templates/arm_storage_account.json'
+        stdout: true
+
+    - script: 'dir /s arm_templates'
+      displayName: 'List source and generated files'
+
+    - script: 'move arm_templates "arm templates"'
+      displayName: 'Move to other directory with special chars'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test 2'
+      inputs:
+        sourceDirectory: 'arm templates/**.json'
+
+    - script: 'dir /s "arm templates"'
+      displayName: 'List source and generated files'
+
 - stage: macOS
   pool:
     vmImage: 'macOS-latest'
@@ -219,4 +347,68 @@ stages:
         sourceDirectory: 'bicep files/**.bicep'
 
     - script: 'ls -laR "bicep files"'
+      displayName: 'List source and generated files'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (defaults with dir)'
+      inputs:
+        sourceDirectory: 'arm_templates/'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (defaults with glob)'
+      inputs:
+        sourceDirectory: 'arm_templates/**.json'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (all in entire directory tree with glob)'
+      inputs:
+        sourceDirectory: '**/**.json'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (with output directory)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'arm_templates/**.json'
+        outputDirectory: 'arm_templates/out'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test (with stdout output)'
+      inputs:
+        process: 'multiple'
+        sourceDirectory: 'arm_templates/**.json'
+        stdout: true
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json file test (defaults)'
+      inputs:
+        process: 'single'
+        sourceFile: './arm_templates/arm_storage_account.json'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json file test (with output filename)'
+      inputs:
+        process: 'single'
+        sourceFile: './arm_templates/arm_storage_account.json'
+        stdout: false
+        outputFile: './arm_templates/sample1.out.bicep'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json file test (with stdout output)'
+      inputs:
+        process: 'single'
+        sourceFile: './arm_templates/arm_storage_account.json'
+        stdout: true
+
+    - script: 'ls -laR arm_templates'
+      displayName: 'List source and generated files'
+
+    - script: 'mv arm_templates "arm templates"'
+      displayName: 'Move to other directory with special chars'
+
+    - task: BicepDecompile@0
+      displayName: 'Decompile Sample .json files test 2'
+      inputs:
+        sourceDirectory: 'arm templates/**.json'
+
+    - script: 'ls -laR "arm templates"'
       displayName: 'List source and generated files'
