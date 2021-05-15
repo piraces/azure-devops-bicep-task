@@ -86,11 +86,6 @@ stages:
         sourceDirectory: 'arm_templates/**.json'
 
     - task: BicepDecompile@0
-      displayName: 'Decompile Sample .json files test (all in entire directory tree with glob)'
-      inputs:
-        sourceDirectory: '**/**.json'
-
-    - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (with output directory)'
       inputs:
         process: 'multiple'
@@ -223,11 +218,6 @@ stages:
         sourceDirectory: 'arm_templates/**.json'
 
     - task: BicepDecompile@0
-      displayName: 'Decompile Sample .json files test (all in entire directory tree with glob)'
-      inputs:
-        sourceDirectory: '**/**.json'
-
-    - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (with output directory)'
       inputs:
         process: 'multiple'
@@ -358,11 +348,6 @@ stages:
       displayName: 'Decompile Sample .json files test (defaults with glob)'
       inputs:
         sourceDirectory: 'arm_templates/**.json'
-
-    - task: BicepDecompile@0
-      displayName: 'Decompile Sample .json files test (all in entire directory tree with glob)'
-      inputs:
-        sourceDirectory: '**/**.json'
 
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (with output directory)'
