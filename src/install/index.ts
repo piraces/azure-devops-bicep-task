@@ -71,7 +71,7 @@ async function run() {
         taskLib.setVariable('BICEP_PATH', bicepFile);
         fs.chmodSync(bicepFile, '755');
         taskLib.debug('Added tool to PATH');
-    } catch (err) {
+    } catch (err: any) {
         taskLib.setResult(taskLib.TaskResult.Failed, err.message);
     }
 }

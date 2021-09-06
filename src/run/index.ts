@@ -190,7 +190,7 @@ async function run() {
         executeBicepBuild(files, bicepTool, additionalArgsByInputs);
 
         taskLib.debug('Executed successfully');
-    } catch (err) {
+    } catch (err: any) {
         taskLib.setResult(taskLib.TaskResult.Failed, err.message);
     }
 }

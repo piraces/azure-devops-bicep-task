@@ -1,15 +1,20 @@
-param location string = 'eastus'
-param name string = 'uniquestorage001' // must be globally unique
+param storageAccountName string
+param containerName string = 'logs'
+param location string = resourceGroup().location
 
-var storageSku = 'Standard_LRS' // declare variable and assign value
-
-resource stg 'Microsoft.Storage/storageAccounts@2019-06-01' = {
-    name: name
-    location: location
-    kind: 'Storage'
-    sku: {
-        name: storageSku // reference variable
-    }
+resource sa 'Microsoft.Storage/storageAccounts@2019-06-01' = {
+  name: storageAccountName
+  location: location
+  sku: {
+    name: 'Standard_LRS'
+    tier: 'Standard'
+  }
+  kind: 'StorageV2'
+  properties: {
+    accessTier: 'Hot'
+  }
 }
 
-output storageId string = stg.id // output resourceId of storage account
+resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2019-06-01' = {
+  name: '${sa.name}/default/${containerName}'
+}

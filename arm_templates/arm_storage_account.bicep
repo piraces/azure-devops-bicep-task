@@ -1,20 +1,20 @@
-@allowed([
-  'Premium_LRS'
-  'Standard_GRS'
-  'Standard_LRS'
-  'Standard_RAGRS'
-  'Standard_ZRS'
-])
-@description('Type of redundancy for your storage account')
-param storageAccountType string = 'Standard_GRS'
+param storageAccountName string
+param containerName string = 'logs'
+param location string = resourceGroup().location
 
-var storageAccountName_var = 'bicepteststorage'
-
-resource storageAccountName 'Microsoft.Storage/storageAccounts@2016-01-01' = {
-  name: storageAccountName_var
-  location: resourceGroup().location
+resource sa 'Microsoft.Storage/storageAccounts@2019-06-01' = {
+  name: storageAccountName
+  location: location
   sku: {
-    name: storageAccountType
+    name: 'Standard_LRS'
+    tier: 'Standard'
   }
-  kind: 'Storage'
+  kind: 'StorageV2'
+  properties: {
+    accessTier: 'Hot'
+  }
+}
+
+resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2019-06-01' = {
+  name: '${sa.name}/default/${containerName}'
 }
