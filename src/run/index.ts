@@ -130,7 +130,7 @@ export function executeBicepBuild(files: string[], bicepTool: string, additional
     files.forEach((file: string) => {
         const args = ['build', file, ...additionalArgsByInputs];
         const bicepProcess = taskLib.tool(bicepTool).arg(args).execSync();
-        
+
         if (bicepProcess.code !== 0) {
             throw new Error(`Failed to execute script. Related file: ${file}`);
         } else if (bicepProcess.stderr.length > 0) {
