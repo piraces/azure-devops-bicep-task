@@ -133,6 +133,8 @@ export function executeBicepBuild(files: string[], bicepTool: string, additional
 
         if (bicepProcess.code !== 0) {
             throw new Error(`Failed to execute script. Related file: ${file}`);
+        } else if (bicepProcess.stderr.length > 0) {
+            taskLib.setResult(taskLib.TaskResult.SucceededWithIssues, bicepProcess.stderr);
         } else {
             taskLib.debug(`- Built '${file}' successfully`);
         }
