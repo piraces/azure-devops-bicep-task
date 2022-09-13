@@ -16,7 +16,7 @@
     "version": {
       "Major": 0,
       "Minor": 3,
-      "Patch": 4
+      "Patch": 6
     },
     "instanceNameFormat": "Run Bicep CLI build command",
     "inputs": [
