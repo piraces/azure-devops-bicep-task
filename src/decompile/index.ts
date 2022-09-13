@@ -82,26 +82,6 @@ export function getOutputTypeForFiles(
     return OutputType.Default;
 }
 
-export function checkForVersionCompatibility(outputProcess: OutputType): void {
-    const bicepToolVersion = taskLib.getVariable('BICEP_TOOL_VERSION');
-    if (!bicepToolVersion) {
-        return;
-    }
-
-    const bicepVersionNumber = Number.parseFloat(bicepToolVersion);
-    if (
-        (bicepVersionNumber < 0.3 ||
-            bicepToolVersion === '0.3.255' ||
-            bicepToolVersion === '0.3.126' ||
-            bicepToolVersion === '0.3.1') &&
-        (outputProcess == OutputType.OutDir || outputProcess == OutputType.OutFile)
-    ) {
-        throw new Error(
-            `The version '${bicepToolVersion}' of Bicep CLI does not support an output directory or an output file as an option... Consider upgrading to a latest version of the Bicep CLI.`,
-        );
-    }
-}
-
 export function getBicepTool(): string | undefined {
     let bicepTool: string | undefined;
     const bicepToolName = taskLib.getVariable('BICEP_TOOL_NAME');
@@ -152,7 +132,6 @@ async function run() {
         checkInputsAreValid(sourceDirectory, sourceFile, processType, outputProcess, outputDirectory, outputFile);
         const processingType: ProcessingType = getProcessingTypeForFiles(sourceDirectory, sourceFile, processType);
         const outputType: OutputType = getOutputTypeForFiles(outputDirectory, outputFile, stdoutEnabled, outputProcess);
-        checkForVersionCompatibility(outputType);
 
         let files: string[] = [];
 

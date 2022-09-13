@@ -22,7 +22,7 @@ This task takes only one `version` parameter input (semantic versioning) which i
 steps:
 - task: BicepInstall@0
   inputs:
-    version: 0.4.613
+    version: 0.10.13
 ```
 
 # Run Bicep CLI build command task
@@ -114,6 +114,10 @@ If no input regarding output options is set, it will default to the source direc
 
 Starting with the patch 0.3.4, warnings in the build or decompilation processes will report a `SucceededWithIssues` status, showing all warnings in the pipeline execution.
 
+## Bicep versions support
+
+Please consider using the latest version of the Bicep CLI, this extension does not ensure a correct execution with versions prior to `0.4.x`. 
+
 # Local Development
 
 **Note:** [Bicep](https://github.com/Azure/bicep) must be installed in the local machine. [TypeScript](https://www.typescriptlang.org/download) must be also installed as a global package (`npm i typescript -g`).
@@ -137,7 +141,7 @@ export AGENT_TOOLSDIRECTORY="/tools" # Or any other existing directory
 
 ```powershell
 # For PowerShell:
-$env:INPUT_VERSION = "0.4.613" # Or any other valid Bicep version
+$env:INPUT_VERSION = "0.10.13" # Or any other valid Bicep version
 $env:INPUT_PROCESS = "multiple" # Selection between 'multiple' or 'single' file(s) processing
 $env:INPUT_SOURCEDIRECTORY = "C:\bicep_files\*.bicep" # Or any other existing directory with bicep file(s)
 $env:INPUT_SOURCEFILE = "C:\bicep_files\sample1.bicep" # Or any other existing bicep file
@@ -147,7 +151,7 @@ $env:INPUT_OUTPUTFILE = "C:\bicep_files\sample1.out.json" # Or any other path/fi
 ```
 ```bash
 # For bash:
-export INPUT_VERSION="0.4.613" # Or any other valid Bicep version
+export INPUT_VERSION="0.10.13" # Or any other valid Bicep version
 export INPUT_PROCESS = "multiple" # Selection between 'multiple' or 'single' file(s) processing
 export INPUT_SOURCEDIRECTORY="C:\bicep_files\*.bicep" # Or any other existing directory with bicep file(s)
 export INPUT_SOURCEFILE = "C:\bicep_files\sample1.bicep" # Or any other existing bicep file
