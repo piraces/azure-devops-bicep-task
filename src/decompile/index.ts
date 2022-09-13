@@ -114,7 +114,7 @@ export function getBicepTool(): string | undefined {
 
 export function executeBicepDecompile(files: string[], bicepTool: string, additionalArgsByInputs: string[]): void {
     files.forEach((file: string) => {
-        const args = ['decompile', file, ...additionalArgsByInputs];
+        const args = ['decompile', file, ...additionalArgsByInputs, '--force'];
         const bicepProcess = taskLib.tool(bicepTool).arg(args).execSync();
 
         if (bicepProcess.code !== 0) {

@@ -118,6 +118,10 @@ Starting with the patch 0.3.4, warnings in the build or decompilation processes 
 
 Please consider using the latest version of the Bicep CLI, this extension does not ensure a correct execution with versions prior to `0.4.x`. 
 
+## Decompile command
+
+Starting on version `0.3.7` of this extension, the decompile command will overwrite the destination file if it exists.
+
 # Local Development
 
 **Note:** [Bicep](https://github.com/Azure/bicep) must be installed in the local machine. [TypeScript](https://www.typescriptlang.org/download) must be also installed as a global package (`npm i typescript -g`).
