@@ -15,8 +15,8 @@
     "category": "Azure Pipelines",
     "version": {
       "Major": 0,
-      "Minor": 3,
-      "Patch": 8
+      "Minor": 4,
+      "Patch": 1
     },
     "instanceNameFormat": "Install Bicep CLI",
     "inputs": [

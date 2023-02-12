@@ -1,7 +1,6 @@
 import * as os from 'os';
 import { getDownloadUrl, getLatestVersionTag } from '../../src/install/index';
-
-const axios = require('axios');
+import axios from 'axios';
 
 jest.mock('os');
 jest.mock('axios');
@@ -17,22 +16,21 @@ const InvalidPlatform = 'android';
 
 const archMock = jest.spyOn(os, 'arch');
 const platformMock = jest.spyOn(os, 'platform');
+const axiosMock = jest.spyOn(axios, 'get');
 
 function prepareMocks(architecture: string, platform: any, version = '0.2.328', axiosFail = false) {
     archMock.mockImplementation(() => architecture);
     platformMock.mockImplementation(() => platform);
 
     if (axiosFail) {
-        axios.get.mockRejectedValue({ message: 'Just Testing' });
+        axiosMock.mockRejectedValue({ message: 'Just Testing', config: 'Test config' });
     } else {
-        axios.get.mockResolvedValue({ data: { tag_name: version } });
+        axiosMock.mockResolvedValue({ data: { tag_name: version } });
     }
 }
 
 function restoreMocks() {
-    archMock.mockRestore();
-    platformMock.mockRestore();
-    axios.mockRestore();
+    jest.restoreAllMocks();
 }
 
 describe('getDownloadUrl returns a valid URL', () => {
@@ -79,7 +77,7 @@ describe('getLatestVersionTag returns a valid tag', () => {
         try {
             await getLatestVersionTag();
         } catch (err) {
-            expect(err).toEqual(new Error(`[FATAL] Error while retrieving latest version tag: 'Just Testing'`));
+            expect(err).toEqual(new Error(`[FATAL] Error while retrieving latest version tag: 'Just Testing'.\nConfig: 'Test config'`));
         }
     });
 });
