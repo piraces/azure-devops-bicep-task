@@ -77,7 +77,9 @@ describe('getLatestVersionTag returns a valid tag', () => {
         try {
             await getLatestVersionTag();
         } catch (err) {
-            expect(err).toEqual(new Error(`[FATAL] Error while retrieving latest version tag: 'Just Testing'.\nConfig: 'Test config'`));
+            expect(err).toEqual(
+                new Error(`[FATAL] Error while retrieving latest version tag: 'Just Testing'.\nConfig: 'Test config'`),
+            );
         }
     });
 });

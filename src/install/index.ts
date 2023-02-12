@@ -37,22 +37,33 @@ export async function getLatestVersionTag(): Promise<string> {
     return await axios
         .get('https://api.github.com/repos/Azure/Bicep/releases/latest', {
             headers: {
-                'User-Agent': 'piraces'
-            }
+                'User-Agent': 'piraces',
+            },
         })
         .then(function (response: { data: { tag_name: string } }) {
             return response.data.tag_name.replace('v', '');
         })
-        .catch(function (error: { message: string, response?: { data: string, status: string, headers: string}, request: ClientRequest, config: string  }) {
+        .catch(function (error: {
+            message: string;
+            response?: { data: string; status: string; headers: string };
+            request: ClientRequest;
+            config: string;
+        }) {
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
-                throw new Error(`[FATAL] Error while retrieving latest version tag: '${error.message}'.\nResponse: \n-Data: '${error.response.data}' \n-Status: '${error.response.status}' \n-Headers: '${error.response.headers}'`);
-              } else if (error.request) {
-                throw new Error(`[FATAL] Error while retrieving latest version tag: '${error.message}'.\nRequest: '${error.request}'\nConfig: '${error.config}'`);
-              } else {
-                throw new Error(`[FATAL] Error while retrieving latest version tag: '${error.message}'.\nConfig: '${error.config}'`);
-              }
+                throw new Error(
+                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.\nResponse: \n-Data: '${error.response.data}' \n-Status: '${error.response.status}' \n-Headers: '${error.response.headers}'`,
+                );
+            } else if (error.request) {
+                throw new Error(
+                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.\nRequest: '${error.request}'\nConfig: '${error.config}'`,
+                );
+            } else {
+                throw new Error(
+                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.\nConfig: '${error.config}'`,
+                );
+            }
         });
 }
 
