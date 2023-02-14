@@ -1,6 +1,6 @@
 {
   "name": "azure-devops-bicep-task",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Tasks for installing Bicep CLI and running Bicep CLI build commands",
   "main": "index.js",
   "scripts": {
@@ -38,6 +38,7 @@
   "homepage": "https://github.com/piraces/azure-devops-bicep-task#readme",
   "dependencies": {
     "axios": "^0.27.2",
+    "axios-retry": "^3.4.0",
     "azure-pipelines-task-lib": "^4.2.0",
     "azure-pipelines-tool-lib": "^2.0.0-preview",
     "glob": "^8.1.0"
@@ -49,7 +50,6 @@
     "@types/q": "^1.5.5",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
-    
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
