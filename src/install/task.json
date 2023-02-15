@@ -16,7 +16,7 @@
     "version": {
       "Major": 0,
       "Minor": 4,
-      "Patch": 4
+      "Patch": 5
     },
     "instanceNameFormat": "Install Bicep CLI",
     "inputs": [

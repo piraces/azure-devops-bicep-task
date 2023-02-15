@@ -4,23 +4,7 @@ import { platform, arch } from 'os';
 import * as taskLib from 'azure-pipelines-task-lib/task';
 import * as toolLib from 'azure-pipelines-tool-lib/tool';
 import { ClientRequest } from 'http';
-import axios, { AxiosError } from 'axios';
-import axiosRetry from 'axios-retry';
-
-axiosRetry(axios,
-    {
-        retries: 3,
-        retryCondition: (error: AxiosError) => {
-            if (!error.response || error.response.status >= 400) {
-                if (error.response) {
-                    taskLib.debug(`Retrying request with status code '${error.response.status}'.`);
-                    taskLib.debug(`Response received: '${JSON.stringify(error.response)}'.`);
-                }
-                return true;
-            }
-            return false;
-        }
-});
+import axios from 'axios';
 
 export function getDownloadUrl(version: string): string {
     const agentPlatform = platform();
@@ -51,13 +35,9 @@ export function getDownloadUrl(version: string): string {
 
 export async function getLatestVersionTag(): Promise<string> {
     return await axios
-        .get('https://api.github.com/repos/Azure/Bicep/releases/latest', {
-            headers: {
-                'User-Agent': 'piraces',
-            },
-        })
-        .then(function (response: { data: { tag_name: string } }) {
-            return response.data.tag_name.replace('v', '');
+        .get('https://github.com/azure/bicep/releases/latest')
+        .then(function (response) {
+            return response.request.path.split('/')[5].replace('v', '');
         })
         .catch(function (error: {
             message: string;
@@ -69,15 +49,15 @@ export async function getLatestVersionTag(): Promise<string> {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
                 throw new Error(
-                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.\nResponse: \n-Data: '${JSON.stringify(error.response.data)}' \n-Status: '${error.response.status}' \n-Headers: '${JSON.stringify(error.response.headers)}'`,
+                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.`,
                 );
             } else if (error.request) {
                 throw new Error(
-                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.\nRequest: '${JSON.stringify(error.request)}'\nConfig: '${error.config}'`,
+                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.`,
                 );
             } else {
                 throw new Error(
-                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.\nConfig: '${error.config}'`,
+                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.`,
                 );
             }
         });
