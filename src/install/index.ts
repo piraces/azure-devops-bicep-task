@@ -48,17 +48,11 @@ export async function getLatestVersionTag(): Promise<string> {
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
-                throw new Error(
-                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.`,
-                );
+                throw new Error(`[FATAL] Error while retrieving latest version tag: '${error.message}'.`);
             } else if (error.request) {
-                throw new Error(
-                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.`,
-                );
+                throw new Error(`[FATAL] Error while retrieving latest version tag: '${error.message}'.`);
             } else {
-                throw new Error(
-                    `[FATAL] Error while retrieving latest version tag: '${error.message}'.`,
-                );
+                throw new Error(`[FATAL] Error while retrieving latest version tag: '${error.message}'.`);
             }
         });
 }

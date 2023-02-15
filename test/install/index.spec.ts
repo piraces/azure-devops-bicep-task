@@ -25,7 +25,7 @@ function prepareMocks(architecture: string, platform: any, version = '0.2.328', 
     if (axiosFail) {
         axiosMock.mockRejectedValue({ message: 'Just Testing', config: 'Test config' });
     } else {
-        axiosMock.mockResolvedValue({ data: { tag_name: version } });
+        axiosMock.mockResolvedValue({ request: { path: `/Azure/bicep/releases/tag/v${version}` } });
     }
 }
 
@@ -77,9 +77,7 @@ describe('getLatestVersionTag returns a valid tag', () => {
         try {
             await getLatestVersionTag();
         } catch (err) {
-            expect(err).toEqual(
-                new Error(`[FATAL] Error while retrieving latest version tag: 'Just Testing'.\nConfig: 'Test config'`),
-            );
+            expect(err).toEqual(new Error(`[FATAL] Error while retrieving latest version tag: 'Just Testing'.`));
         }
     });
 });
