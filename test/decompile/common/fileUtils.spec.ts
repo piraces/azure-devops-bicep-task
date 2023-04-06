@@ -29,7 +29,7 @@ function restoreMocks() {
 describe('getFilesList perform valid actions', () => {
     afterEach(() => restoreMocks());
 
-    test('if path has not wildcards', () => {
+    test('if path has no wildcards - Forward Slash', () => {
         prepareMocks();
 
         getFilesList('./arm_templates');
@@ -38,10 +38,28 @@ describe('getFilesList perform valid actions', () => {
         expect(globSyncMock).toHaveBeenCalledWith('arm_templates/**', { nodir: true });
     });
 
-    test('if path has wildcards', () => {
+    test('if path has not wildcards - Backward Slash', () => {
+        prepareMocks();
+
+        getFilesList('.\\arm_templates');
+        expect(globHasMagicMock).toHaveBeenCalled();
+        expect(pathJoinMock).toHaveBeenCalled();
+        expect(globSyncMock).toHaveBeenCalledWith('arm_templates/**', { nodir: true });
+    });
+
+    test('if path has wildcards - Forward Slash', () => {
         prepareMocks();
 
         getFilesList('./arm_templates/*.json');
+        expect(globHasMagicMock).toHaveBeenCalled();
+        expect(pathJoinMock).not.toHaveBeenCalled();
+        expect(globSyncMock).toHaveBeenCalledWith('./arm_templates/*.json', { nodir: true });
+    });
+
+    test('if path has wildcards - Backward Slash', () => {
+        prepareMocks();
+
+        getFilesList('.\\arm_templates\\*.json');
         expect(globHasMagicMock).toHaveBeenCalled();
         expect(pathJoinMock).not.toHaveBeenCalled();
         expect(globSyncMock).toHaveBeenCalledWith('./arm_templates/*.json', { nodir: true });
