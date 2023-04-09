@@ -39,11 +39,11 @@
   "dependencies": {
     "axios": "^0.27.2",
     "azure-pipelines-task-lib": "^4.2.0",
-    "azure-pipelines-tool-lib": "^2.0.0-preview",
+    "azure-pipelines-tool-lib": "2.0.3",
     "glob": "^8.1.0"
   },
   "devDependencies": {
-    "@types/glob": "^8.0.1",
+    "@types/glob": "^8.1.0",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.13.0",
     "@types/q": "^1.5.5",
@@ -57,6 +57,6 @@
     "lint-staged": "^13.1.1",
     "prettier": "^2.8.4",
     "ts-jest": "^29.0.5",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.4"
   }
 }
