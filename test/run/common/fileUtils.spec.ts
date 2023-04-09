@@ -29,7 +29,7 @@ function restoreMocks() {
 describe('getFilesList perform valid actions', () => {
     afterEach(() => restoreMocks());
 
-    test('if path has not wildcards', () => {
+    test('if path has no wildcards - forward slash', () => {
         prepareMocks();
 
         getFilesList('./bicep_files');
@@ -38,10 +38,28 @@ describe('getFilesList perform valid actions', () => {
         expect(globSyncMock).toHaveBeenCalledWith('bicep_files/**', { nodir: true });
     });
 
-    test('if path has wildcards', () => {
+    test('if path has no wildcards - back slash', () => {
+        prepareMocks();
+
+        getFilesList('.\\bicep_files');
+        expect(globHasMagicMock).toHaveBeenCalled();
+        expect(pathJoinMock).toHaveBeenCalled();
+        expect(globSyncMock).toHaveBeenCalledWith('bicep_files/**', { nodir: true });
+    });
+
+    test('if path has wildcards - forward slash', () => {
         prepareMocks();
 
         getFilesList('./bicep_files/*.bicep');
+        expect(globHasMagicMock).toHaveBeenCalled();
+        expect(pathJoinMock).not.toHaveBeenCalled();
+        expect(globSyncMock).toHaveBeenCalledWith('./bicep_files/*.bicep', { nodir: true });
+    });
+
+    test('if path has wildcards - back slash', () => {
+        prepareMocks();
+
+        getFilesList('.\\bicep_files\\*.bicep');
         expect(globHasMagicMock).toHaveBeenCalled();
         expect(pathJoinMock).not.toHaveBeenCalled();
         expect(globSyncMock).toHaveBeenCalledWith('./bicep_files/*.bicep', { nodir: true });
