@@ -1,17 +1,17 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import * as glob from 'glob';
+import { hasMagic, sync } from 'glob';
 
 export function getFilesList(directory: string): string[] {
     let directoryToGetFiles: string = directory;
 
     directoryToGetFiles = directoryToGetFiles.replace(/\\/g, '/');
-    if (!glob.hasMagic(directoryToGetFiles)) {
+    if (!hasMagic(directoryToGetFiles)) {
         directoryToGetFiles = path.join(directoryToGetFiles, '**');
         directoryToGetFiles = directoryToGetFiles.replace(/\\/g, '/');
     }
-    
-    const allFiles = glob.sync(directoryToGetFiles, { nodir: true });
+
+    const allFiles = sync(directoryToGetFiles, { nodir: true });
     return allFiles.filter((file) => file.endsWith('.json'));
 }
 

@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "bicep-tasks",
-    "version": "0.4.5",
+    "version": "0.4.6",
     "name": "Bicep Tasks",
     "publisher": "piraces",
     "description": "Provides Azure DevOps tasks to install and run Microsoft Bicep CLI commands (cross-platform)",

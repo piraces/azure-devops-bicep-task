@@ -19,35 +19,35 @@ stages:
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (defaults with glob - forward slash)'
       inputs:
-        sourceDirectory: 'bicep_files/*.bicep'
+        sourceDirectory: 'bicep_files/**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (defaults with glob - backward slash)'
       inputs:
-        sourceDirectory: 'bicep_files\*.bicep'
+        sourceDirectory: 'bicep_files\**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (all in entire directory tree with glob - forward slash)'
       inputs:
-        sourceDirectory: '**/*.bicep'
+        sourceDirectory: '**/**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (all in entire directory tree with glob - backward slash)'
       inputs:
-        sourceDirectory: '**\*.bicep'
+        sourceDirectory: '**\**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (with output directory)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'bicep_files/*.bicep'
+        sourceDirectory: 'bicep_files/**.bicep'
         outputDirectory: 'bicep_files/out'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (with stdout output)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'bicep_files/*.bicep'
+        sourceDirectory: 'bicep_files/**.bicep'
         stdout: true
 
     - task: BicepBuild@0
@@ -80,7 +80,7 @@ stages:
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test 2'
       inputs:
-        sourceDirectory: 'bicep files/*.bicep'
+        sourceDirectory: 'bicep files/**.bicep'
 
     - script: 'ls -laR "bicep files"'
       displayName: 'List source and generated files'
@@ -93,25 +93,25 @@ stages:
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (defaults with glob - forward slash)'
       inputs:
-        sourceDirectory: 'arm_templates/*.json'
+        sourceDirectory: 'arm_templates/**.json'
 
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (defaults with glob - backward slash)'
       inputs:
-        sourceDirectory: 'arm_templates\*.json'
+        sourceDirectory: 'arm_templates\**.json'
 
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (with output directory)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'arm_templates/*.json'
+        sourceDirectory: 'arm_templates/**.json'
         outputDirectory: 'arm_templates/out'
 
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (with stdout output)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'arm_templates/*.json'
+        sourceDirectory: 'arm_templates/**.json'
         stdout: true
 
     - task: BicepDecompile@0
@@ -144,7 +144,7 @@ stages:
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test 2'
       inputs:
-        sourceDirectory: 'arm templates/*.json'
+        sourceDirectory: 'arm templates/**.json'
 
     - script: 'ls -laR "arm templates"'
       displayName: 'List source and generated files'
@@ -166,35 +166,35 @@ stages:
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (defaults with glob - forward slash)'
       inputs:
-        sourceDirectory: 'bicep_files/*.bicep'
+        sourceDirectory: 'bicep_files/**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (defaults with glob - backward slash)'
       inputs:
-        sourceDirectory: 'bicep_files\*.bicep'
+        sourceDirectory: 'bicep_files\**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (all in entire directory tree with glob - forward slash)'
       inputs:
-        sourceDirectory: '**/*.bicep'
+        sourceDirectory: '**/**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (all in entire directory tree with glob - backward slash)'
       inputs:
-        sourceDirectory: '**\*.bicep'
+        sourceDirectory: '**\**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (with output directory)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'bicep_files\*.bicep'
+        sourceDirectory: 'bicep_files\**.bicep'
         outputDirectory: 'bicep_files\out'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (with stdout output)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'bicep_files\*.bicep'
+        sourceDirectory: 'bicep_files\**.bicep'
         stdout: true
 
     - task: BicepBuild@0
@@ -227,7 +227,7 @@ stages:
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test 2'
       inputs:
-        sourceDirectory: 'bicep files/*.bicep'
+        sourceDirectory: 'bicep files/**.bicep'
 
     - script: 'dir /s "bicep files"'
       displayName: 'List source and generated files'
@@ -240,25 +240,25 @@ stages:
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (defaults with glob - forward slash)'
       inputs:
-        sourceDirectory: 'arm_templates/*.json'
+        sourceDirectory: 'arm_templates/**.json'
 
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (defaults with glob - backward slash)'
       inputs:
-        sourceDirectory: 'arm_templates\*.json'
+        sourceDirectory: 'arm_templates\**.json'
 
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (with output directory)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'arm_templates/*.json'
+        sourceDirectory: 'arm_templates/**.json'
         outputDirectory: 'arm_templates/out'
 
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (with stdout output)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'arm_templates/*.json'
+        sourceDirectory: 'arm_templates/**.json'
         stdout: true
 
     - task: BicepDecompile@0
@@ -291,7 +291,7 @@ stages:
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test 2'
       inputs:
-        sourceDirectory: 'arm templates/*.json'
+        sourceDirectory: 'arm templates/**.json'
 
     - script: 'dir /s "arm templates"'
       displayName: 'List source and generated files'
@@ -313,35 +313,35 @@ stages:
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (defaults with glob - forward slash)'
       inputs:
-        sourceDirectory: 'bicep_files/*.bicep'
+        sourceDirectory: 'bicep_files/**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (defaults with glob - backward slash)'
       inputs:
-        sourceDirectory: 'bicep_files\*.bicep'
+        sourceDirectory: 'bicep_files\**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (all in entire directory tree with glob - forward slash)'
       inputs:
-        sourceDirectory: '**/*.bicep'
+        sourceDirectory: '**/**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (all in entire directory tree with glob - backward slash)'
       inputs:
-        sourceDirectory: '**\*.bicep'
+        sourceDirectory: '**\**.bicep'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (with output directory)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'bicep_files/*.bicep'
+        sourceDirectory: 'bicep_files/**.bicep'
         outputDirectory: 'bicep_files/out'
 
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test (with stdout output)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'bicep_files/*.bicep'
+        sourceDirectory: 'bicep_files/**.bicep'
         stdout: true
 
     - task: BicepBuild@0
@@ -374,7 +374,7 @@ stages:
     - task: BicepBuild@0
       displayName: 'Compile Sample .bicep files test 2'
       inputs:
-        sourceDirectory: 'bicep files/*.bicep'
+        sourceDirectory: 'bicep files/**.bicep'
 
     - script: 'ls -laR "bicep files"'
       displayName: 'List source and generated files'
@@ -387,25 +387,25 @@ stages:
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (defaults with glob - forward slash)'
       inputs:
-        sourceDirectory: 'arm_templates/*.json'
+        sourceDirectory: 'arm_templates/**.json'
 
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (defaults with glob - backward slash)'
       inputs:
-        sourceDirectory: 'arm_templates\*.json'
+        sourceDirectory: 'arm_templates\**.json'
 
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (with output directory)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'arm_templates/*.json'
+        sourceDirectory: 'arm_templates/**.json'
         outputDirectory: 'arm_templates/out'
 
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test (with stdout output)'
       inputs:
         process: 'multiple'
-        sourceDirectory: 'arm_templates/*.json'
+        sourceDirectory: 'arm_templates/**.json'
         stdout: true
 
     - task: BicepDecompile@0
@@ -438,7 +438,7 @@ stages:
     - task: BicepDecompile@0
       displayName: 'Decompile Sample .json files test 2'
       inputs:
-        sourceDirectory: 'arm templates/*.json'
+        sourceDirectory: 'arm templates/**.json'
 
     - script: 'ls -laR "arm templates"'
       displayName: 'List source and generated files'

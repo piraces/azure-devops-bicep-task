@@ -1,0 +1,25 @@
+name: Extension CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - run: npm ci --omit=dev
+    - run: npm run build --if-present
+    - run: npm run publish
+    - uses: actions/upload-artifact@v3
+      with:
+        name: extension
+        path: '*.vsix'
+
