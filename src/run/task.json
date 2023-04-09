@@ -15,8 +15,8 @@
     "category": "Azure Pipelines",
     "version": {
       "Major": 0,
-      "Minor": 4,
-      "Patch": 9
+      "Minor": 5,
+      "Patch": 0
     },
     "instanceNameFormat": "Run Bicep CLI build command",
     "inputs": [
