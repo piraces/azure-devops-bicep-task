@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/piraces/azure-devops-bicep-task#readme",
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^1.6.0",
     "azure-pipelines-task-lib": "^4.2.0",
     "azure-pipelines-tool-lib": "2.0.2",
     "glob": "^8.1.0"
