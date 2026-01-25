@@ -15,8 +15,8 @@
     "category": "Azure Pipelines",
     "version": {
       "Major": 0,
-      "Minor": 5,
-      "Patch": 1
+      "Minor": 6,
+      "Patch": 0
     },
     "instanceNameFormat": "Install Bicep CLI",
     "inputs": [
@@ -30,7 +30,10 @@
       }
     ],
     "execution": {
-      "Node": {
+      "Node20_1": {
+        "target": "index.js"
+      },
+      "Node16": {
         "target": "index.js"
       }
     }

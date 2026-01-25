@@ -2,6 +2,7 @@
 *.js
 !jest.config.js
 !.eslintrc.js
+!eslint.config.js
 !.prettierrc.js
 node_modules
 .taskkey

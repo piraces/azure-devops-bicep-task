@@ -104,7 +104,7 @@ export function getBicepTool(): string | undefined {
         }
 
         return bicepTool;
-    } catch (error) {
+    } catch (_error) {
         throw new Error(
             'Bicep is not installed, please run "Install Bicep CLI"' +
                 ' before this task or ensure Bicep is installed and available in PATH in the agent',
