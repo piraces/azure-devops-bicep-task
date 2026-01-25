@@ -1,0 +1,64 @@
+name: Publish to Marketplace
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build TypeScript
+        run: npm run build
+      
+      - name: Run tests
+        run: npm test
+      
+      - name: Lint check
+        run: npm run lint:no-fix
+      
+      - name: Remove dev dependencies
+        run: |
+          rm -rf node_modules
+          npm ci --omit=dev
+      
+      - name: Create extension package (VSIX)
+        run: npm run publish
+      
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension
+          path: '*.vsix'
+          retention-days: 30
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download VSIX artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: extension
+      
+      - name: Install tfx-cli
+        run: npm install -g tfx-cli
+      
+      - name: Publish to VS Marketplace
+        env:
+          MARKETPLACE_PAT: ${{ secrets.MARKETPLACE_PAT }}
+        run: |
+          VSIX_FILE=$(ls *.vsix)
+          echo "Publishing: $VSIX_FILE"
+          tfx extension publish --vsix "$VSIX_FILE" --token "$MARKETPLACE_PAT" --no-prompt
