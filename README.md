@@ -8,6 +8,12 @@ This is a simple yet useful Azure DevOps set of tasks that allow to install and 
 
 [View in Marketplace](https://marketplace.visualstudio.com/items?itemName=piraces.bicep-tasks)
 
+## ✨ What's New in v0.6.0
+
+- **🚀 Node 20 Runtime**: Tasks now run on Node 20 (with Node 16 fallback), eliminating the end-of-life Node 6 warning
+- **📦 Updated Dependencies**: All dependencies updated to their latest versions for improved security and performance
+- **🤖 Automated Publishing**: New GitHub Actions workflow for automated releases to the Marketplace
+
 # Install Bicep CLI task
 
 This task downloads and installs in the agent any version of the Bicep CLI available (adding it to the PATH environment variable). After running the task, the `Run Bicep CLI build command task` can be used. Alternatively, `bicep` command could be used in a script directly.
@@ -124,7 +130,10 @@ Starting on version `0.3.7` of this extension, the decompile command will overwr
 
 # Local Development
 
-**Note:** [Bicep](https://github.com/Azure/bicep) must be installed in the local machine. [TypeScript](https://www.typescriptlang.org/download) must be also installed as a global package (`npm i typescript -g`).
+**Requirements:**
+- **Node.js 20.x or higher** (recommended to match the production runtime)
+- [Bicep](https://github.com/Azure/bicep) installed locally
+- [TypeScript](https://www.typescriptlang.org/download) installed globally (`npm i typescript -g`)
 
 1. Run `npm install` in the root directory.
 2. Run `npm run build` in the root directory.
