@@ -137,7 +137,10 @@ async function run() {
 
         if (processingType === ProcessingType.Multiple && sourceDirectory) {
             taskLib.debug('Getting all matching files from source directory...');
-            files = getFilesList(sourceDirectory);
+            const allFiles = getFilesList(sourceDirectory);
+            // Filter only .json files to avoid errors with non-json files in the directory
+            files = allFiles.filter(file => file.toLowerCase().endsWith('.json'));
+            taskLib.debug(`Found ${files.length} .json file(s) out of ${allFiles.length} total file(s)`);
         } else if (processingType === ProcessingType.Single && sourceFile) {
             files.push(sourceFile);
         } else {
