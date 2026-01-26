@@ -139,7 +139,7 @@ async function run() {
             taskLib.debug('Getting all matching files from source directory...');
             const allFiles = getFilesList(sourceDirectory);
             // Filter only .json files to avoid errors with non-json files in the directory
-            files = allFiles.filter(file => file.toLowerCase().endsWith('.json'));
+            files = allFiles.filter((file) => file.toLowerCase().endsWith('.json'));
             taskLib.debug(`Found ${files.length} .json file(s) out of ${allFiles.length} total file(s)`);
         } else if (processingType === ProcessingType.Single && sourceFile) {
             files.push(sourceFile);
