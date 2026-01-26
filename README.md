@@ -37,7 +37,12 @@ This tasks runs the `bicep build` command with an input path containing `.bicep`
 
 This task takes only one `sourceDirectory` or `sourceFile` parameter input which is the path where the bicep file/files reside (can be a glob, directory, or a single file).
 
-**Note**: When using a directory as `sourceDirectory`, all files included in the directory will be processed (including files in subfolders). Same behaviour as specifying the directory with the glob wildcard `**`. Example: `./bicep_files` would be interpreted as `./bicep_files/**`.
+**Note**: When using a directory as `sourceDirectory`, all `.bicep` files in the directory will be processed (including files in subfolders), and non-.bicep files will be automatically ignored. Example: `./bicep_files` would be interpreted as `./bicep_files/**/*.bicep`.
+
+**Tip**: You can use glob patterns to have more control over which files to process. For example:
+- `./templates/**/*.bicep` - Process all .bicep files recursively
+- `./templates/*.bicep` - Process only .bicep files in the root of templates folder
+- `./templates/{main,modules}/*.bicep` - Process .bicep files in specific subdirectories
 
 ## Sample YAML with the task (for multiple files)
 
@@ -69,9 +74,11 @@ This tasks runs the `bicep decompile` command with an input path containing `.js
 
 This task takes only one `sourceDirectory` or `sourceFile` parameter input which is the path where the bicep file/files reside (can be a glob, directory, or a single file).
 
-**Note**: Only files with `.json` extension will be processed.
+**Note**: When using a directory as `sourceDirectory`, all `.json` files in the directory will be processed (including files in subfolders), and non-.json files will be automatically ignored. Example: `./arm_templates` would be interpreted as `./arm_templates/**/*.json`.
 
-**Note**: When using a directory as `sourceDirectory`, all files included in the directory will be processed (including files in subfolders). Same behaviour as specifying the directory with the glob wildcard `**`. Example: `./arm_templates` would be interpreted as `./arm_templates/**`.
+**Tip**: You can use glob patterns to have more control over which files to process. For example:
+- `./templates/**/*.json` - Process all .json files recursively
+- `./templates/*.json` - Process only .json files in the root of templates folder
 
 ## Sample YAML with the task (for multiple files)
 
