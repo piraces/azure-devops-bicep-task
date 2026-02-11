@@ -38,7 +38,7 @@
   "homepage": "https://github.com/piraces/azure-devops-bicep-task#readme",
   "dependencies": {
     "@eslint/js": "^9.39.2",
-    "axios": "^1.13.0",
+    "axios": "^1.13.5",
     "azure-pipelines-task-lib": "^5.2.6",
     "azure-pipelines-tool-lib": "^2.0.10",
     "glob": "^13.0.0"
